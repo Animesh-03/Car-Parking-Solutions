@@ -41,7 +41,7 @@ public class ParkingSlotController
         slot.setIsBooked(true);
         parkingSlotRepository.save(slot);
         return "saved";
-    }
+    } //
 
     @PostMapping(path = "/add")
     public @ResponseBody String addNewSlot(@RequestParam String location)
