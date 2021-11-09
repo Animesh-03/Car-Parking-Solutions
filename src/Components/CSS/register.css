@@ -1,0 +1,22 @@
+.register-container
+{
+    background-color: #F9F9F9F9;
+    max-width: 400px;
+}
+
+#phone-number
+{
+    width: 70%;
+    margin: auto;
+}
+
+.btn-otp
+{
+    width: 27%;
+    margin-left: 3%;
+}
+
+.text-danger
+{
+    font-size: 0.8em;
+}
