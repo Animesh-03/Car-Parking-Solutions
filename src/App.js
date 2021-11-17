@@ -9,6 +9,8 @@ import { LoginContext } from './Components/LoginContext';
 import {PrivateRoute} from './Components/PrivateRoute';
 import {UserContext} from './Components/UserContext'
 import AdminDashboard from './Components/AdminDashboard';
+import EmployeeDashboard from './Components/EmployeeDashboard';
+import EmployeeLogin from './Components/EmployeeLogin';
 
 
 function App() {
@@ -33,6 +35,14 @@ function App() {
 
                 <Route exact path="/admin">
                   <AdminDashboard />
+                </Route>
+
+                <Route exact path="/employee">
+                  <EmployeeDashboard />
+                </Route>
+
+                <Route exact path="/employeeLogin">
+                  <EmployeeLogin />
                 </Route>
                 
                 <Route exact path="/">

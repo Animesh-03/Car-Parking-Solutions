@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import firebase from '../Others/firebase';
 import { LoginContext } from './LoginContext';
 import { UserContext } from './UserContext';
-
+import {getAuth, signInWithPopup, GoogleAuthProvider} from 'firebase/auth'
 
 const Login = () => {
 
@@ -44,7 +44,7 @@ const Login = () => {
                         switch(user.role)
                         {
                             case "customer": history.push("/dashboard",{user:user}); break;
-                            case "employee":  ; break;
+                            case "employee": history.push("/employee",{user:user}) ; break;
                             case "admin": history.push("/admin",{user:user}) ; break;
                         }
                         }
@@ -68,6 +68,18 @@ const Login = () => {
     }
 
     const handleGoogleSignIn = () => {
+
+        //Console Logs user Info for now
+        const auth = getAuth();
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(auth,provider)
+        .then((result) => {
+            const credeintial = GoogleAuthProvider.credentialFromResult(result);
+            const user = result.user;
+            console.log(user);
+        }).catch((error) => {
+
+        })
 
     }
 
