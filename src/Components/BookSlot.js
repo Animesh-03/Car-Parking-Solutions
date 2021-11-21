@@ -49,7 +49,8 @@ const BookSlot = () => {
             onChange={(e) => setCheckOutTime(e.target.value)} />
             <br /><br />
             <button className="btn btn-primary" onClick={handleSubmit}>Submit</button>
-            
+            <h1>Additional Options</h1>
+                        
         </div>
     )
 }

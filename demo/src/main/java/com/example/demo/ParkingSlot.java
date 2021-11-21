@@ -10,50 +10,48 @@ public class ParkingSlot
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long parkingSlotId;
-    private boolean isBooked = false;
-    private String location;
-    private String checkInTime;
-    private String checkOutTime;
-    private Long bookedBy;
+    private Long id;
+    private Long locationId;
+    private String locationName;
+    private boolean isBooked;
 
-    public Long getParkingSlotId() {
-        return parkingSlotId;
+    public ParkingSlot(Long locationId,String locationName)
+    {
+        this.locationId = locationId;
+        this.locationName = locationName;
+        this.isBooked = false;
     }
-    public String getCheckInTime() {
-        return checkInTime;
+
+    public ParkingSlot()
+    {
+
     }
-    public String getCheckOutTime() {
-        return checkOutTime;
+
+    public Long getId() {
+        return id;
     }
-    public String getLocation() {
-        return location;
-    }
-    public boolean getIsBooked() {
+    public boolean getIsBooked()
+    {
         return isBooked;
     }
-    public Long getBookedBy()
-    {
-        return bookedBy;
+    public Long getLocationId() {
+        return locationId;
     }
-    public void setIsBooked(boolean isBooked) {
+    public String getLocationName() {
+        return locationName;
+    }
+    public void setBooked(boolean isBooked) {
         this.isBooked = isBooked;
     }
-    public void setCheckInTime(String checkInTime) {
-        this.checkInTime = checkInTime;
+    public void setId(Long id) {
+        this.id = id;
     }
-    public void setCheckOutTime(String checkOutTime) {
-        this.checkOutTime = checkOutTime;
+    public void setLocationId(Long locationId) {
+        this.locationId = locationId;
     }
-    public void setLocation(String location) {
-        this.location = location;
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
     }
-    public void setParkingSlotId(Long parkingSlotId) {
-        this.parkingSlotId = parkingSlotId;
-    }
-    public void setBookedBy(Long bookedBy)
-    {
-        this.bookedBy = bookedBy;
-    }
+
 
 }

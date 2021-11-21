@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocation } from "react-router";
+import AdminDash from "./AdminDash";
 import ManageEmployees from "./ManageEmployees";
 import ManageParkingSlots from "./ManageParkingSlots";
 
@@ -15,7 +16,7 @@ const AdminDashboard = () => {
             <button onClick={_ => setComponent("Employees")}>Employees</button>
             <button onClick={_ => setComponent("ParkingSlots")}>Parking Slots</button>
             <button onClick={_ => setComponent("Dashboard")}>Dashboard</button>
-            {(currentComponent == "Employees") ? <ManageEmployees /> : (currentComponent == "ParkingSlots" ) ?  <ManageParkingSlots /> : <h2>Dashboard</h2>}
+            {(currentComponent == "Employees") ? <ManageEmployees /> : (currentComponent == "ParkingSlots" ) ?  <ManageParkingSlots /> : <AdminDash />}
         </div>
         
     );

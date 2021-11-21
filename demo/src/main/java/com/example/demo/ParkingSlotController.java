@@ -31,23 +31,19 @@ public class ParkingSlotController
         return parkingSlotRepository.findById(id);
     }
 
-    @PostMapping(path="/update")
-    public @ResponseBody String updateSlot(@RequestParam Long slotId,@RequestParam String checkInTime, @RequestParam String checkOutTime, @RequestParam Long bookedBy)
+    @PostMapping(path = "/update")
+    public @ResponseBody String updateSlot(@RequestParam Long slotId,@RequestParam boolean isBooked)
     {
         ParkingSlot slot = parkingSlotRepository.findById(slotId).get();
-        slot.setCheckInTime(checkInTime);
-        slot.setCheckOutTime(checkOutTime);
-        slot.setBookedBy(bookedBy);
-        slot.setIsBooked(true);
+        slot.setBooked(isBooked);
         parkingSlotRepository.save(slot);
-        return "saved";
-    } //
+        return "Updated";
+    }
 
     @PostMapping(path = "/add")
-    public @ResponseBody String addNewSlot(@RequestParam String location)
+    public @ResponseBody String addNewSlot(@RequestParam Long locationId, @RequestParam String locationName)
     {
-        ParkingSlot slot = new ParkingSlot();
-        slot.setLocation(location);
+        ParkingSlot slot = new ParkingSlot(locationId,locationName);
         parkingSlotRepository.save(slot);
         return "Saved";
     }
