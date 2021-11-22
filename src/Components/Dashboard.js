@@ -13,6 +13,7 @@ const Dashboard = () => {
     const {isLoggedIn,setLoggedIn} = useContext(LoginContext);
     const {user,setUser} = useContext(UserContext);
     
+    const [balance,setBalance] = useState();
     const [orders,setOrders] = useState();
 
     // const user = location.state.user;
@@ -27,7 +28,7 @@ const Dashboard = () => {
             locations = res.data;
             var ul = document.getElementById("all-slots");
             locations.forEach(loc => {
-                var li = document.createElement(li);
+                var li = document.createElement("li");
                 var a = document.createElement("a");
                 a.append(document.createTextNode(JSON.stringify(loc)));
                 console.log("Id: " + loc.id);
@@ -45,7 +46,14 @@ const Dashboard = () => {
             setOrders(res.data);
             console.log(orders);
         })
-    },[])
+    },[]);
+
+    const addBalance = () => {
+        axios.post("http://localhost:8080/users/addBalance",null,{params:{
+            id: user.id,
+            amount:balance
+        }});
+    }
 
     console.log(isLoggedIn);
     // if(!isLoggedIn)
@@ -59,9 +67,13 @@ const Dashboard = () => {
         isLoggedIn ? (
             <div className="container-fluid">
             <h1>Hello, {user.username}</h1>
+            <h2>All Locations </h2>
             <ul id="all-slots"></ul>
             <h2>Your Orders</h2>
             <p>{JSON.stringify(orders)}</p>
+            <h2>Add Balance</h2>
+            <input id="add-balance" placeholder="Add amount to Wallet" onChange={e => setBalance(e.target.value)} />
+            <button id="add-balance-btn" onClick={addBalance}>Add to Wallet</button>
             
         </div>
         ) : <p>Not Logged In</p>

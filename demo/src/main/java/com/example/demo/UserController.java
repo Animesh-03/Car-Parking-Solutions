@@ -27,6 +27,18 @@ public class UserController
         return "Saved";
     }
 
+    @PostMapping("/addBalance")
+    public @ResponseBody String addBalance(Long id, Long amount)
+    {
+        User u = userRepository.findById(id).get();
+        Long currentBalance = u.getBalance();
+        if(currentBalance == null)
+            currentBalance = (long)0;
+        u.setBalance(currentBalance + amount);
+        userRepository.save(u);
+        return "Added";
+    }
+
     @GetMapping(path = "/all")
     public @ResponseBody Iterable<User> getAllUsers()
     {
