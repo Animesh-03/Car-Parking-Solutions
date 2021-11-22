@@ -33,6 +33,11 @@ public class Order
         this.amount = amount;
     }
 
+    public Order()
+    {
+
+    }
+
     public Long getOrderId() {
         return orderId;
     }

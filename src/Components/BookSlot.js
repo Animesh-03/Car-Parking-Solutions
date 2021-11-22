@@ -10,47 +10,70 @@ const BookSlot = () => {
     const params = useParams();
     const {isLoggedIn,setLoggedIn} = useContext(LoginContext);
     const {user,setUser} = useContext(UserContext);
-    const [parkingSlot,setParkingSlot] = useState(null);
+    let userId = user.id;
     const slotId = params.id;
     const [checkInTime,setCheckInTime] = useState("");
     const [checkOutTime,setCheckOutTime] = useState("");
+
+    const [dryWash,setDryWash] = useState(false);
+    const [carWash,setCarWash] = useState(false);
+    const [repairs,setRepairs] = useState(false);
     
-    useEffect(() => {
+    let [slot,setSlot] = useState();
+    
+    useEffect(_ => {
         axios.get("http://localhost:8080/slots/get",{params:{
-            id:slotId,
+            id:slotId
         }}).then((res) => {
-            setParkingSlot(res.data);
-        });
-        
-        setTimeout(_ => {console.log(user)},3000);
-    },[])
+            setSlot(res.data);
+
+        })
+    },[]);
+
+    const calculatePayment = () => {
+        return 100;
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
         var chkInTime = checkInTime.split(':');
         var chkOutTime = checkOutTime.split(':');
         console.log("Check In Time : "+chkInTime[0] + ":" + chkInTime[1]);
-        axios.post("http://localhost:8080/slots/update",null,{params:{
+        axios.post("http://localhost:8080/orders/new",null,{params:{
+            locationId: slot.locationId,
+            bookedBy:userId,
             slotId:slotId,
+            wantDryWash:dryWash,
+            wantCarWash:carWash,
+            wantRepairs:repairs,
             checkInTime:checkInTime,
             checkOutTime:checkOutTime,
-            bookedBy:user.id,
+            amount:calculatePayment(),
         }}).then(res => console.log(res));
     }
 
     return ( 
         <div className="container-fluid">
-            <p>{JSON.stringify(parkingSlot)}</p>
+            <p>{JSON.stringify(slot)}</p>
+            
             <input id="check-in-time" placeholder="Check in time"
             value={checkInTime}
             onChange={(e) => setCheckInTime(e.target.value)} />
             <input id="check-out-time" placeholder="Check out time"
             value={checkOutTime}
             onChange={(e) => setCheckOutTime(e.target.value)} />
+            
+            
+            <h1>Additional Options</h1>
+            <input type="checkbox" id="dryWash-chkbox"  onChange={(e) => setDryWash(e.target.value)} />
+            <label htmlFor="dryWash-chkbox">Request Dry Wash</label>
+            <input type="checkbox" id="carWash-chkbox"  onChange={(e) => setCarWash(e.target.value)} />
+            <label htmlFor="carWash-chkbox">Request Car Wash</label>
+            <input type="checkbox" id="repairs-chkbox"  onChange={(e) => setRepairs(e.target.value)} />
+            <label htmlFor="repairs-chkbox">Request Repairs</label>
             <br /><br />
             <button className="btn btn-primary" onClick={handleSubmit}>Submit</button>
-            <h1>Additional Options</h1>
-                        
         </div>
     )
 }

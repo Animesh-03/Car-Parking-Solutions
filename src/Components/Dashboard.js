@@ -18,31 +18,25 @@ const Dashboard = () => {
     // console.log(user);
    
 
-    let slots = [];    
+    let locations = [];    
 
     useEffect(() => {
-        axios.get("http://localhost:8080/slots/all")
+        axios.get("http://localhost:8080/location/all")
         .then((res) => {            
-            slots = res.data;
-            // console.log(slots[0].parkingSlotId);
+            locations = res.data;
             var ul = document.getElementById("all-slots");
-            setTimeout(_ => {console.log(isLoggedIn);console.log(user);},3000)
-            for(var i = 0; i < slots.length; i++)
-            {
-                // var a = document.createElement("a");
-                // a.href= "/slots/" + slots[i].parkingSlotId;
-                // a.appendChild(document.createTextNode((slots[i].location).toString()))
-                // var li = document.createElement("li");
-                // li.appendChild(a)
-                // ul.appendChild(li);
-                let sltID = slots[i].parkingSlotId;
-                var li = document.createElement("li");
-                li.appendChild(document.createTextNode((slots[i].location).toString()));
-                console.log(slots[i]);
-                li.onclick=() => {history.push("/slots/" +  sltID )}
+            locations.forEach(loc => {
+                var li = document.createElement(li);
+                var a = document.createElement("a");
+                a.append(document.createTextNode(JSON.stringify(loc)));
+                console.log("Id: " + loc.id);
+                a.href = "/location/" + loc.id;
+                li.appendChild(a);
                 ul.appendChild(li);
-            }
-        })
+                
+            });
+
+        });
     },[])
 
     console.log(isLoggedIn);

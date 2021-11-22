@@ -25,10 +25,16 @@ public class ParkingSlotController
         return parkingSlotRepository.findAll();
     }
 
-    @GetMapping(path="/get")
-    public @ResponseBody Optional<ParkingSlot> getParkingSlot(@RequestParam Long id)
+    @GetMapping(path="/getByLocation")
+    public @ResponseBody Iterable<ParkingSlot> getAllParkingSlotsinLocation(@RequestParam Long id)
     {
-        return parkingSlotRepository.findById(id);
+        return parkingSlotRepository.findAllByLocationId(id);
+    }
+
+    @GetMapping(path="/get")
+    public @ResponseBody ParkingSlot getParkingSlot(@RequestParam Long id)
+    {
+        return parkingSlotRepository.findById(id).get();
     }
 
     @PostMapping(path = "/update")

@@ -11,6 +11,7 @@ import {UserContext} from './Components/UserContext'
 import AdminDashboard from './Components/AdminDashboard';
 import EmployeeDashboard from './Components/EmployeeDashboard';
 import EmployeeLogin from './Components/EmployeeLogin';
+import SlotsInLocation from './Components/SlotsInLocation';
 
 
 function App() {
@@ -28,6 +29,10 @@ function App() {
                 </Route>
 
                 <PrivateRoute component={Dashboard} path="/dashboard" authenticated={isLoggedIn} />
+
+                <Route exact path="/location/:id" >
+                  <SlotsInLocation />
+                </Route>
 
                 <Route exact path="/slots/:id" >
                   <BookSlot />
