@@ -23,6 +23,12 @@ public class OrderController
         return orderRepository.findAll();
     }
 
+    @GetMapping(path = "/get")
+    public @ResponseBody Iterable<Order> getByCustomer(Long id)
+    {
+        return orderRepository.findByBookedBy(id);
+    }
+
     @PostMapping(path = "/new")
     public @ResponseBody String addNewOrder(@RequestParam Long locationId,@RequestParam Long bookedBy,@RequestParam Long slotId,@RequestParam boolean wantDryWash,@RequestParam boolean wantCarWash,@RequestParam boolean wantRepairs,@RequestParam String checkInTime,@RequestParam String checkOutTime,@RequestParam Long amount)
     {

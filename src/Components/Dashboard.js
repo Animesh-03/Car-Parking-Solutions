@@ -13,6 +13,7 @@ const Dashboard = () => {
     const {isLoggedIn,setLoggedIn} = useContext(LoginContext);
     const {user,setUser} = useContext(UserContext);
     
+    const [orders,setOrders] = useState();
 
     // const user = location.state.user;
     // console.log(user);
@@ -37,6 +38,13 @@ const Dashboard = () => {
             });
 
         });
+
+        axios.get("http://localhost:8080/orders/get",{params:{
+            id:user.id
+        }}).then(res => {
+            setOrders(res.data);
+            console.log(orders);
+        })
     },[])
 
     console.log(isLoggedIn);
@@ -52,6 +60,8 @@ const Dashboard = () => {
             <div className="container-fluid">
             <h1>Hello, {user.username}</h1>
             <ul id="all-slots"></ul>
+            <h2>Your Orders</h2>
+            <p>{JSON.stringify(orders)}</p>
             
         </div>
         ) : <p>Not Logged In</p>
