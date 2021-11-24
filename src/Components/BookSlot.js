@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { LoginContext } from "./LoginContext";
 import { UserContext } from "./UserContext";
@@ -10,6 +10,8 @@ const BookSlot = () => {
     const params = useParams();
     const {isLoggedIn,setLoggedIn} = useContext(LoginContext);
     const {user,setUser} = useContext(UserContext);
+    const history = useHistory();
+
     let userId = user.id;
     const slotId = params.id;
     const [checkInTime,setCheckInTime] = useState("");
@@ -50,7 +52,10 @@ const BookSlot = () => {
             checkInTime:checkInTime,
             checkOutTime:checkOutTime,
             amount:calculatePayment(),
-        }}).then(res => console.log(res));
+        }}).then(res => {
+            console.log(res);
+            history.push("/dashboard",{user:user});
+        });
     }
 
     return ( 

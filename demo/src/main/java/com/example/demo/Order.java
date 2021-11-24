@@ -20,6 +20,7 @@ public class Order
     private String checkInTime;
     private String checkOutTime;
     private Long amount;
+    private boolean checkedOut;
 
     public Order(Long locationId, Long bookedBy, Long slotId, boolean wantDryWash, boolean wantCarWash, boolean wantRepairs, String checkInTime, String checkOutTime, Long amount)
     {
@@ -31,6 +32,7 @@ public class Order
         this.checkInTime = checkInTime;
         this.checkOutTime = checkOutTime;
         this.amount = amount;
+        this.checkedOut = false;
     }
 
     public Order()
@@ -68,6 +70,9 @@ public class Order
     public String getCheckOutTime() {
         return checkOutTime;
     }
+    public boolean getCheckedOut() {
+        return checkedOut;
+    }
     public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
@@ -97,6 +102,10 @@ public class Order
     }
     public void setAmount(Long amount) {
         this.amount = amount;
+    }
+    public void setCheckedOut(boolean checkedOut)
+    {
+        this.checkedOut = checkedOut;
     }
 }
 

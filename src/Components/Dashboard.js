@@ -13,8 +13,8 @@ const Dashboard = () => {
     const {isLoggedIn,setLoggedIn} = useContext(LoginContext);
     const {user,setUser} = useContext(UserContext);
     
-    const [balance,setBalance] = useState();
-    const [orders,setOrders] = useState();
+    const [balance,setBalance] = useState(0);
+    let orders = [];
 
     // const user = location.state.user;
     // console.log(user);
@@ -43,8 +43,16 @@ const Dashboard = () => {
         axios.get("http://localhost:8080/orders/get",{params:{
             id:user.id
         }}).then(res => {
-            setOrders(res.data);
+            orders = res.data;
             console.log(orders);
+            var ul = document.getElementById("order-list");
+            orders.forEach(o => {
+                let li = document.createElement("li");
+                li.onclick = (e) => history.push("/orders/" + o.orderId, {order:o,user:user});
+                li.appendChild(document.createTextNode(JSON.stringify(o)));
+                console.log(li);
+                ul.appendChild(li);
+            });
         })
     },[]);
 
@@ -70,10 +78,12 @@ const Dashboard = () => {
             <h2>All Locations </h2>
             <ul id="all-slots"></ul>
             <h2>Your Orders</h2>
-            <p>{JSON.stringify(orders)}</p>
+            {/* <p>{JSON.stringify(orders)}</p> */}
+            <ul id="order-list"></ul>
             <h2>Add Balance</h2>
             <input id="add-balance" placeholder="Add amount to Wallet" onChange={e => setBalance(e.target.value)} />
             <button id="add-balance-btn" onClick={addBalance}>Add to Wallet</button>
+            <p>Current Balance: {user.balance}</p>
             
         </div>
         ) : <p>Not Logged In</p>

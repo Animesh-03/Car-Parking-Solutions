@@ -27,7 +27,7 @@ public class UserController
         return "Saved";
     }
 
-    @PostMapping("/addBalance")
+    @PostMapping(path = "/addBalance")
     public @ResponseBody String addBalance(Long id, Long amount)
     {
         User u = userRepository.findById(id).get();
@@ -37,6 +37,18 @@ public class UserController
         u.setBalance(currentBalance + amount);
         userRepository.save(u);
         return "Added";
+    }
+
+    @PostMapping(path = "/checkout")
+    public @ResponseBody String deductBalance(Long id, Long amount)
+    {
+        User u = userRepository.findById(id).get();
+        Long currentBalance = u.getBalance();
+        if(currentBalance < amount)
+            return "Insufficient funds";
+        u.setBalance(currentBalance - amount);
+        userRepository.save(u);
+        return "Saved";
     }
 
     @GetMapping(path = "/all")

@@ -26,7 +26,7 @@ public class OrderController
     @GetMapping(path = "/get")
     public @ResponseBody Iterable<Order> getByCustomer(Long id)
     {
-        return orderRepository.findByBookedBy(id);
+        return orderRepository.findIncompleteOrdersByBookedBy(id);
     }
 
     @PostMapping(path = "/new")
@@ -35,6 +35,15 @@ public class OrderController
         Order o = new Order(locationId, bookedBy, slotId, wantDryWash, wantCarWash, wantRepairs, checkInTime, checkOutTime, amount);
         orderRepository.save(o);
 
+        return "Saved";
+    }
+
+    @PostMapping(path = "/finalise")
+    public @ResponseBody String completeOrder(Long id)
+    {
+        Order o = orderRepository.findById(id).get();
+        o.setCheckedOut(true);
+        orderRepository.save(o);
         return "Saved";
     }
 }

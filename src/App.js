@@ -12,6 +12,7 @@ import AdminDashboard from './Components/AdminDashboard';
 import EmployeeDashboard from './Components/EmployeeDashboard';
 import EmployeeLogin from './Components/EmployeeLogin';
 import SlotsInLocation from './Components/SlotsInLocation';
+import Order from './Components/Order';
 
 
 function App() {
@@ -36,6 +37,10 @@ function App() {
 
                 <Route exact path="/slots/:id" >
                   <BookSlot />
+                </Route>
+
+                <Route exact path="/orders/:id" >
+                  <Order />
                 </Route>
 
                 <Route exact path="/admin">

@@ -47,8 +47,7 @@ const Login = () => {
                             case "employee": history.push("/employee",{user:user}) ; break;
                             case "admin": history.push("/admin",{user:user}) ; break;
                         }
-                        }
-                    ,3000);
+                    },500);
                     
                 }
                 else
