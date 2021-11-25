@@ -32,7 +32,7 @@ const Register = () => {
     const validateOtp = (e) => {
         e.preventDefault();
         ConfigureRecaptcha();
-        let number =/* "+91" +*/ phoneNumber;
+        let number ="+91" + phoneNumber;
         signInWithPhoneNumber(auth,number,window.recaptchaVerifier)
             .then((response) => {
                 window.confirmationResult=response;
@@ -124,10 +124,13 @@ const Register = () => {
 
     const [emailErrorMsg,setEmailErrorMsg] = useState("");
     function emailError() {
+        let pattern = /[A-Za-z0-9]+@[a-z\-]+.[a-z]/;
+        let result = pattern.test(email);
+        console.log(result);
         
-        if(email == null || email == "")
+        if(!result)
         {
-            setEmailErrorMsg("First Name cannot be Empty");
+            setEmailErrorMsg("Invalid E-mail");
             return !false;
         }
         else
@@ -139,10 +142,12 @@ const Register = () => {
 
     const [phoneErrorMsg,setPhoneErrorMsg] = useState("");
     function phoneNumberError() {
-        
-        if(phoneNumber == null || phoneNumber == "")
+        let pattern = /^\d{10}/;
+        let result = pattern.test(phoneNumber)
+
+        if(!result)
         {
-            setPhoneErrorMsg("Mobile Number cannot be empty");
+            setPhoneErrorMsg("Mobile Number invalid");
             return !false;
         }
         else
@@ -192,14 +197,17 @@ const Register = () => {
             bool = false;
             console.log("Phone error");
         }
+        if(window.confirmationResult != undefined)
+        {
+            window.confirmationResult.confirm(otp).then((res) => {
+                console.log("OTP match");
+            }).catch((error) => {
+                console.log(error);
+                console.log("OTP Incorrect");
+                bool = false;
+            })
+        }
         
-        window.confirmationResult.confirm(otp).then((res) => {
-            console.log("OTP match");
-        }).catch((error) => {
-            console.log(error);
-            console.log("OTP Incorrect");
-            bool = false;
-        })
             
         return bool;
     }
@@ -254,7 +262,7 @@ const Register = () => {
                     <br/>
                     <div className="row">
                         <label className="form-label" htmlFor="email-address">E-mail</label>
-                        <input className="form-control" id="email-address" placeholder="E-mail" required
+                        <input className="form-control" id="email-address" type="email" placeholder="E-mail" required
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
@@ -273,7 +281,6 @@ const Register = () => {
                         <label className="text-danger" htmlFor="first-name">{phoneErrorMsg}</label>
                         <label className="form-label" htmlFor="register-otp">OTP</label>
                         <input className="form-control" id="register-otp" placeholder="OTP"
-                            value={otp}
                             onChange={(e) => setOtp(e.target.value)}
                         />
                     </div>
