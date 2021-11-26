@@ -41,12 +41,19 @@ const Login = () => {
                         console.log(isLoggedIn);
                         console.log(user);
                         localStorage.setItem("currentUser",JSON.stringify(user));
-                        switch(user.role)
+                        if(user.email == null || user.firstName == null || user.lastName == null || user.password == null || user.username == null || user.phoneNumber == null)
                         {
-                            case "customer": history.push("/dashboard",{user:user}); break;
-                            case "employee": history.push("/employee",{user:user}) ; break;
-                            case "admin": history.push("/admin",{user:user}) ; break;
+                            history.push("/editDetails",{user:user});
                         }
+                        else
+                        {
+                            switch(user.role)
+                            {
+                                case "customer": history.push("/dashboard",{user:user}); break;
+                                case "admin": history.push("/admin",{user:user}) ; break;
+                            }
+                        }
+                        
                     },500);
                     
                 }
@@ -90,8 +97,20 @@ const Login = () => {
         signInWithPopup(auth,provider)
         .then((result) => {
             const credeintial = GoogleAuthProvider.credentialFromResult(result);
-            const user = result.user;
-            console.log(user);
+            const GoogleUser = result.user;
+            console.log(GoogleUser);
+
+            
+
+
+            if(user.email == null || user.firstName == null || user.lastName == null || user.password == null || user.username == null || user.phoneNumber == null)
+            {
+                history.push("/editDetails",{user:user});
+            }
+            else
+            {
+                history.push("/dashboard",{user:user});
+            }
         }).catch((error) => {
 
         })
