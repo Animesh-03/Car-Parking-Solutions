@@ -40,7 +40,7 @@ public class EmployeeController
         return "Saved";
     }
 
-    @GetMapping(path = "/get")
+    @GetMapping(path = "/getByUsername")
     public @ResponseBody Employee getEmployee(@RequestParam String userName)
     {
         return employeeRepository.findByUserName(userName);

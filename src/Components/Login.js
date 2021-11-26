@@ -53,11 +53,27 @@ const Login = () => {
                 else
                 {
                     console.log("Password mis-match");
+                    alert("Incorrect username or password password");
                 }
             }
             else
             {
-                console.log("Not found");
+                axios.get("http://localhost:8080/employee/getByUsername",{params:{
+                    userName:username
+                }}).then(res => {
+                    console.log(res.data);
+                    const emp = res.data;
+                    if(emp.password == password)
+                    {
+                        console.log("Employee found");
+                        history.push("/employee",{user:emp});
+                    }
+                    else
+                    {
+                        console.log("Employee Not found");
+                        alert("Incorrect username or password");
+                    }
+                })
             }
         });
 
@@ -145,6 +161,8 @@ const Login = () => {
 
                     <a className="text-center" href=""><p>Forgot Password?</p> </a>
                 </form>
+
+                <button id="register-redirect" onClick={() => (history.push("/register"))}>Register Here</button>
 
             </div>
         </div>

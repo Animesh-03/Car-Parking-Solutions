@@ -40,6 +40,7 @@ const Register = () => {
             }).catch((error) => {
                 console.log(number);
                 console.log(error);
+                window.recaptchaVerifier.clear();
             })
     }
 
@@ -57,7 +58,7 @@ const Register = () => {
                 email:email,
                 phoneNumber:phoneNumber
             }});
-            history.push("/login");
+            history.push("/");
         }
         
     }
@@ -204,6 +205,7 @@ const Register = () => {
             }).catch((error) => {
                 console.log(error);
                 console.log("OTP Incorrect");
+                window.recaptchaVerifier.clear();
                 bool = false;
             })
         }
