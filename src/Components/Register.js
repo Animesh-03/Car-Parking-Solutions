@@ -46,20 +46,37 @@ const Register = () => {
 
     const handleRegister = (e) => {
         e.preventDefault();
+
+        
+        axios.get("http://localhost:8080/users/get",{params:{
+            userID:username
+        }}).then(res => {
+            let usernameExists = false;
+            if(res.data != null)
+            {
+                alert("Username already exists, please use a different username");
+                setUserNameErrorMsg("Username already exists, please use a different username");
+                console.log(userNameErrorMsg);
+                usernameExists = true;
+            }
+
+            
+            if(validateForm() && !usernameExists)
+            {
+                axios.post("http://localhost:8080/users/add",null,{params:{
+                    firstName:firstName,
+                    lastName:lastName,
+                    username:username,
+                    password:password,
+                    email:email,
+                    phoneNumber:phoneNumber
+                }});
+                history.push("/");
+            }
+        })
         
 
-        if(validateForm())
-        {
-            axios.post("http://localhost:8080/users/add",null,{params:{
-                firstName:firstName,
-                lastName:lastName,
-                username:username,
-                password:password,
-                email:email,
-                phoneNumber:phoneNumber
-            }});
-            history.push("/");
-        }
+        
         
     }
 
