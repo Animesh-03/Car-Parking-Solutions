@@ -1,15 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
-import { useLocation } from "react-router";
+import { useHistory, useLocation } from "react-router";
 
 const EditDetails = () => {
     const location = useLocation().state;
+    const history = useHistory();
     const user = location.user;
-
-    const [firstName,setFirstName] = useState("");
-    const [lastName,setLastName] = useState(" ");
-    const [carModel,setCarModel] = useState("");
-    const [carNumber,setCarNumber] = useState("");
 
     const editDetails = () => {
         axios.post("http://localhost:8080/users/update",null,{params:{
@@ -18,9 +14,15 @@ const EditDetails = () => {
             carNumber: user.carNumber,
             firstName:user.firstName,
             lastName:user.lastName,
-            phoneNumber:user.phoneNumber
+            phoneNumber:user.phoneNumber,
+            address:user.address,
+            zipCode:user.zipCode
         }}).then(res => {
             console.log(res.data);
+            if(res.data == "Saved")
+            {
+                history.push("/dashboard",{user:user});
+            }
         })
     }
 
@@ -42,6 +44,16 @@ const EditDetails = () => {
             <div id="mobile-number">
                 <label htmlFor="mobile-number-input">Mobile Number</label>
                 <input id="mobile-number-input" placeholder="Mobile Number" defaultValue={user.phoneNumber} onChange={(e) => user.phoneNumber=e.target.value} />
+            </div>
+            <br />
+            <div id="address-field">
+                <label htmlFor="address-input"> Address</label>
+                <input id="address-input" placeholder="Address" defaultValue={user.address} onChange={(e) => user.address=e.target.value} />
+            </div>
+            <br />
+            <div id="zip-code">
+                <label htmlFor="zip-code-input">Zip Code</label>
+                <input id="zip-code-input" placeholder="Zip Code" defaultValue={user.zipCode} onChange={(e) => user.zipCode=e.target.value} />
             </div>
             <br />
             <div id="car-model">

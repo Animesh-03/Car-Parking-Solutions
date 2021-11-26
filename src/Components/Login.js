@@ -100,10 +100,7 @@ const Login = () => {
             const GoogleUser = result.user;
             console.log(GoogleUser);
 
-            
-
-
-            if(user.email == null || user.firstName == null || user.lastName == null || user.password == null || user.username == null || user.phoneNumber == null)
+            if(user.email == null || user.firstName == null || user.lastName == null || user.password == null || user.username == null || user.phoneNumber == null || user.address == null || user.zipCode == null)
             {
                 history.push("/editDetails",{user:user});
             }
@@ -112,6 +109,7 @@ const Login = () => {
                 history.push("/dashboard",{user:user});
             }
         }).catch((error) => {
+            console.log(error.message);
 
         })
 

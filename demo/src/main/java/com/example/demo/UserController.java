@@ -28,7 +28,7 @@ public class UserController
     }
 
     @PostMapping(path = "/update")
-    public @ResponseBody String updateUser(@RequestParam Long id, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String phoneNumber, @RequestParam String carModel, @RequestParam String carNumber)
+    public @ResponseBody String updateUser(@RequestParam Long id, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String phoneNumber, @RequestParam String carModel, @RequestParam String carNumber, @RequestParam String address, @RequestParam String zipCode)
     {
         User u = userRepository.findById(id).get();
         u.setCarModel(carModel);
@@ -36,6 +36,8 @@ public class UserController
         u.setFirstName(firstName);
         u.setLastName(lastName);
         u.setPhoneNumber(phoneNumber);
+        u.setAddress(address);
+        u.setZipCode(zipCode);
 
         userRepository.save(u);
 

@@ -21,6 +21,8 @@ public class User
     private Long balance;
     private String carModel;
     private String carNumber;
+    private String address;
+    private String zipCode;
 
     public User(String firstName, String lastName,String username,String password,String email, String phoneNumber, String role)
     {
@@ -91,6 +93,14 @@ public class User
         this.email = email;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
@@ -132,5 +142,13 @@ public class User
     
     public void setCarNumber(String carNumber) {
         this.carNumber = carNumber;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 }
