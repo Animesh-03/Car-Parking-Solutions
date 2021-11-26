@@ -13,6 +13,7 @@ import EmployeeDashboard from './Components/EmployeeDashboard';
 import EmployeeLogin from './Components/EmployeeLogin';
 import SlotsInLocation from './Components/SlotsInLocation';
 import Order from './Components/Order';
+import EditDetails from './Components/EditDetails';
 
 
 function App() {
@@ -29,7 +30,11 @@ function App() {
                   <Login />
                 </Route>
 
-                <PrivateRoute component={Dashboard} path="/dashboard" authenticated={isLoggedIn} />
+                {/* <PrivateRoute component={Dashboard} path="/dashboard" authenticated={isLoggedIn} /> */}
+
+                <Route exact path="/dashboard" >
+                  <Dashboard />
+                </Route>
 
                 <Route exact path="/location/:id" >
                   <SlotsInLocation />
@@ -57,6 +62,10 @@ function App() {
                 
                 <Route exact path="/register">
                   <Register />
+                </Route>
+
+                <Route exact path="/editDetails">
+                  <EditDetails />
                 </Route>
                 
               </Switch>   

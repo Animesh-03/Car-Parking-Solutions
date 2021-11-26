@@ -27,6 +27,21 @@ public class UserController
         return "Saved";
     }
 
+    @PostMapping(path = "/update")
+    public @ResponseBody String updateUser(@RequestParam Long id, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String phoneNumber, @RequestParam String carModel, @RequestParam String carNumber)
+    {
+        User u = userRepository.findById(id).get();
+        u.setCarModel(carModel);
+        u.setCarNumber(carNumber);
+        u.setFirstName(firstName);
+        u.setLastName(lastName);
+        u.setPhoneNumber(phoneNumber);
+
+        userRepository.save(u);
+
+        return "Saved";
+    }
+
     @PostMapping(path = "/addBalance")
     public @ResponseBody String addBalance(Long id, Long amount)
     {

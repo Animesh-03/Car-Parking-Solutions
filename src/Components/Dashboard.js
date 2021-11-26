@@ -63,30 +63,27 @@ const Dashboard = () => {
         }});
     }
 
-    console.log(isLoggedIn);
-    // if(!isLoggedIn)
-    // {
-    //     console.log("Invalid Access");
-    //     history.push("/login");
-    //     return <p>Redirecting...</p>
-    // }
+    const editDetails = () => {
+        history.push("/editDetails",{user:user});
+    }
     
     return (
-        isLoggedIn ? (
-            <div className="container-fluid">
-            <h1>Hello, {user.username}</h1>
-            <h2>All Locations </h2>
-            <ul id="all-slots"></ul>
-            <h2>Your Orders</h2>
-            {/* <p>{JSON.stringify(orders)}</p> */}
-            <ul id="order-list"></ul>
-            <h2>Add Balance</h2>
-            <input id="add-balance" placeholder="Add amount to Wallet" onChange={e => setBalance(e.target.value)} />
-            <button id="add-balance-btn" onClick={addBalance}>Add to Wallet</button>
+        <div id="dashboard">
             <p>Current Balance: {user.balance}</p>
-            
+            <button id="edit-details" onClick={editDetails}>Edit Details </button>
+            <div className="container-fluid">
+                <h1>Hello, {user.username}</h1>
+                <h2>All Locations </h2>
+                <ul id="all-slots"></ul>
+                <h2>Your Orders</h2>
+                {/* <p>{JSON.stringify(orders)}</p> */}
+                <ul id="order-list"></ul>
+                <h2>Add Balance</h2>
+                <input id="add-balance" placeholder="Add amount to Wallet" onChange={e => setBalance(e.target.value)} />
+                <button id="add-balance-btn" onClick={addBalance}>Add to Wallet</button>y
+            </div>
         </div>
-        ) : <p>Not Logged In</p>
+            
      );
 }
  

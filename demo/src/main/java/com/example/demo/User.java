@@ -19,6 +19,8 @@ public class User
     private String phoneNumber;
     private String role;
     private Long balance;
+    private String carModel;
+    private String carNumber;
 
     public User(String firstName, String lastName,String username,String password,String email, String phoneNumber, String role)
     {
@@ -77,6 +79,14 @@ public class User
         return balance;
     }
 
+    public String getCarModel() {
+        return carModel;
+    }
+
+    public String getCarNumber() {
+        return carNumber;
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -114,5 +124,13 @@ public class User
 
     public void setBalance(Long balance) {
         this.balance = balance;
+    }
+
+    public void setCarModel(String carModel) {
+        this.carModel = carModel;
+    }
+    
+    public void setCarNumber(String carNumber) {
+        this.carNumber = carNumber;
     }
 }
