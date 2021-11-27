@@ -100,18 +100,45 @@ const Login = () => {
             const GoogleUser = result.user;
             console.log(GoogleUser);
 
-            if(user.email == null || user.firstName == null || user.lastName == null || user.password == null || user.username == null || user.phoneNumber == null || user.address == null || user.zipCode == null)
-            {
-                history.push("/editDetails",{user:user});
-            }
-            else
-            {
-                history.push("/dashboard",{user:user});
-            }
+            let user;
+
+            axios.get("http://localhost:8080/users/getByEmail",{params:{
+                email:GoogleUser.email
+            }}).then(res => {
+                console.log(res);
+                if(res.data == "")
+                {
+                    console.log("User does not exist");
+                    axios.post("http://localhost:8080/users/emailAdd",null,{params:{
+                        email:GoogleUser.email,
+                        firstName:GoogleUser.displayName
+                    }}).then(res => {
+                        user = res.data;
+                        console.log("New User created: " + user);
+                        history.push("/editDetails",{user:user})
+                    });
+                }
+                else
+                {
+                    user = res.data;
+                    console.log("User exists");
+                    if(user.email == null || user.firstName == null || user.lastName == null || user.phoneNumber == null || user.address == null || user.zipCode == null)
+                    {
+                        console.log("User existed with incomplete profile: " + user);
+                        history.push("/editDetails",{user:user});
+                    }
+                    else
+                    {
+                        history.push("/dashboard",{user:user});
+                    }
+                }
+                        
+            });
+            
         }).catch((error) => {
             console.log(error.message);
 
-        })
+        });
 
     }
 

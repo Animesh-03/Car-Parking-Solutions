@@ -18,7 +18,7 @@ public class User
     private String email;
     private String phoneNumber;
     private String role;
-    private Long balance;
+    private Long balance = (long)0;
     private String carModel;
     private String carNumber;
     private String address;

@@ -44,8 +44,18 @@ public class UserController
         return "Saved";
     }
 
+    @PostMapping(path = "/emailAdd")
+    public @ResponseBody User addEmail(@RequestParam String email, @RequestParam String firstName)
+    {
+        User u = new User();
+        u.setEmail(email);
+        u.setFirstName(firstName);
+        userRepository.save(u);
+        return u;
+    }
+
     @PostMapping(path = "/addBalance")
-    public @ResponseBody String addBalance(Long id, Long amount)
+    public @ResponseBody User addBalance(Long id, Long amount)
     {
         User u = userRepository.findById(id).get();
         Long currentBalance = u.getBalance();
@@ -53,7 +63,7 @@ public class UserController
             currentBalance = (long)0;
         u.setBalance(currentBalance + amount);
         userRepository.save(u);
-        return "Added";
+        return u;
     }
 
     @PostMapping(path = "/checkout")
@@ -79,5 +89,18 @@ public class UserController
     public List<User> getUser(@RequestParam(value = "userID") String userID)
     {
         return userRepository.findByUsername(userID);
+    }
+
+    @GetMapping(path = "/getById")
+    public User getUserById(@RequestParam Long id)
+    {
+        return userRepository.findById(id).get();
+    }
+
+    @GetMapping(path = "/getByEmail")
+    public User getUserByEmail(@RequestParam String email)
+    {
+        return userRepository.findByEmail(email);
+
     }
 }

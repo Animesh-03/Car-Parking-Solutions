@@ -1,16 +1,19 @@
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { useParams } from "react-router";
+import { useHistory, useLocation, useParams } from "react-router";
 import { UserContext } from "./UserContext";
 
 
 const SlotsInLocation = () => {
 
     const params = useParams();
-    const {user,setUser} = useContext(UserContext);
+    const history = useHistory();
+    const location = useLocation();
+    // const {user,setUser} = useContext(UserContext);
 
     let slots = [];
     const locId = params.id;
+    const user = location.state.user;
 
     useEffect(() => {
         var ul = document.getElementById("slots-list");
@@ -23,14 +26,9 @@ const SlotsInLocation = () => {
 
             slots.forEach(slt => {
                 var li = document.createElement("li");
-                var a = document.createElement("a");
-                a.append(document.createTextNode(JSON.stringify(slt)));
-                console.log("Id: " + slt.id);
-                a.href = "/slots/" + slt.id; 
-                li.appendChild(a);
-                console.log(li);
+                li.append(document.createTextNode(JSON.stringify(slt)));
+                li.onclick = () => history.push("/slots/" + slt.id,{user:user});
                 ul.appendChild(li);
-                console.log(ul);
             });
         });
         

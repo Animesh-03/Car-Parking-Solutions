@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router";
+import { useHistory, useLocation, useParams } from "react-router";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { LoginContext } from "./LoginContext";
 import { UserContext } from "./UserContext";
@@ -8,8 +8,10 @@ import { UserContext } from "./UserContext";
 
 const BookSlot = () => {
     const params = useParams();
+    const location = useLocation();
     const {isLoggedIn,setLoggedIn} = useContext(LoginContext);
-    const {user,setUser} = useContext(UserContext);
+    // const {user,setUser} = useContext(UserContext);
+    const user = location.state.user;
     const history = useHistory();
 
     let userId = user.id;

@@ -11,14 +11,12 @@ const Dashboard = () => {
     const history = useHistory();
     const location = useLocation();
     const {isLoggedIn,setLoggedIn} = useContext(LoginContext);
-    const {user,setUser} = useContext(UserContext);
+    const tempUser = location.state.user;
+    const [user,setUser] = useState(tempUser);
+    const [userBalance,setUserBalance] = useState(user.balance);
     
     const [balance,setBalance] = useState(0);
     let orders = [];
-
-    // const user = location.state.user;
-    // console.log(user);
-   
 
     let locations = [];    
 
@@ -29,13 +27,9 @@ const Dashboard = () => {
             var ul = document.getElementById("all-slots");
             locations.forEach(loc => {
                 var li = document.createElement("li");
-                var a = document.createElement("a");
-                a.append(document.createTextNode(JSON.stringify(loc)));
-                console.log("Id: " + loc.id);
-                a.href = "/location/" + loc.id;
-                li.appendChild(a);
+                li.append(document.createTextNode(JSON.stringify(loc)));
+                li.onclick = () => history.push("/location/" + loc.id,{user:user});
                 ul.appendChild(li);
-                
             });
 
         });
@@ -60,7 +54,11 @@ const Dashboard = () => {
         axios.post("http://localhost:8080/users/addBalance",null,{params:{
             id: user.id,
             amount:balance
-        }});
+        }}).then(res => {
+            console.log(balance);
+            
+            setUserBalance(res.data.balance);
+        });
     }
 
     const editDetails = () => {
@@ -69,10 +67,10 @@ const Dashboard = () => {
     
     return (
         <div id="dashboard">
-            <p>Current Balance: {user.balance}</p>
+            <p>Current Balance: {userBalance}</p>
             <button id="edit-details" onClick={editDetails}>Edit Details </button>
             <div className="container-fluid">
-                <h1>Hello, {user.username}</h1>
+                <h1>Hello, {user.firstName}</h1>
                 <h2>All Locations </h2>
                 <ul id="all-slots"></ul>
                 <h2>Your Orders</h2>
@@ -80,7 +78,7 @@ const Dashboard = () => {
                 <ul id="order-list"></ul>
                 <h2>Add Balance</h2>
                 <input id="add-balance" placeholder="Add amount to Wallet" onChange={e => setBalance(e.target.value)} />
-                <button id="add-balance-btn" onClick={addBalance}>Add to Wallet</button>y
+                <button id="add-balance-btn" onClick={addBalance}>Add to Wallet</button>
             </div>
         </div>
             
