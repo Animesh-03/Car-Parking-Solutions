@@ -33,6 +33,7 @@ public class OrderController
     public @ResponseBody String addNewOrder(@RequestParam Long locationId,@RequestParam Long bookedBy,@RequestParam Long slotId,@RequestParam boolean wantDryWash,@RequestParam boolean wantCarWash,@RequestParam boolean wantRepairs,@RequestParam String checkInTime,@RequestParam String checkOutTime,@RequestParam Long amount)
     {
         Order o = new Order(locationId, bookedBy, slotId, wantDryWash, wantCarWash, wantRepairs, checkInTime, checkOutTime, amount);
+        o.setSlotId(slotId);
         orderRepository.save(o);
 
         return "Saved";

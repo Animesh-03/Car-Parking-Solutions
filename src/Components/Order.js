@@ -43,14 +43,21 @@ const Order = () => {
                 axios.post("http://localhost:8080/orders/finalise",null,{params:{
                     id:order.orderId
                 }}).then(res => {
-                    history.goBack();
+                    let rating = prompt("Enter your rating (1-5) for the employee");
+                    console.log(rating);
+                    axios.post("http://localhost:8080/employee/addRating",null,{params:{
+                        id:employeeId,
+                        rating:rating
+                    }}).then(res => {
+                        axios.post("http://localhost:8080/slots/setNotBooked",null,{params:{
+                            id:order.slotId
+                        }}).then(res => history.goBack());
+                    });
+
+
+                    
                 });
-                let rating = prompt("Enter your rating (1-5) for the employee");
-                console.log(rating);
-                axios.post("http://localhost:8080/employee/addRating",null,{params:{
-                    id:employeeId,
-                    rating:rating
-                }});
+                
             }
         })
     }

@@ -15,7 +15,7 @@ const BookSlot = () => {
     const history = useHistory();
 
     let userId = user.id;
-    const slotId = params.id;
+    var slotId = params.id;
     const [checkInTime,setCheckInTime] = useState("");
     const [checkOutTime,setCheckOutTime] = useState("");
 
@@ -24,6 +24,7 @@ const BookSlot = () => {
     const [repairs,setRepairs] = useState(false);
     
     let [slot,setSlot] = useState();
+    const [slotid,setSlotid] = useState(slotId);
     
     useEffect(_ => {
         axios.get("http://localhost:8080/slots/get",{params:{
@@ -73,10 +74,11 @@ const BookSlot = () => {
         var chkInTime = checkInTime.split(':');
         var chkOutTime = checkOutTime.split(':');
         console.log("Check In Time : "+chkInTime[0] + ":" + chkInTime[1]);
+        console.log("Slot id:" + slotId);
         axios.post("http://localhost:8080/orders/new",null,{params:{
             locationId: slot.locationId,
             bookedBy:userId,
-            slotId:slotId,
+            slotId:slotid,
             wantDryWash:dryWash,
             wantCarWash:carWash,
             wantRepairs:repairs,
@@ -85,7 +87,10 @@ const BookSlot = () => {
             amount:calculatePayment(),
         }}).then(res => {
             console.log(res);
-            history.push("/dashboard",{user:user});
+
+            axios.post("http://localhost:8080/slots/setBooked", null, {params:{
+                id:slotId
+            }}).then(res => history.push("/dashboard",{user:user}));
         });
     }
 

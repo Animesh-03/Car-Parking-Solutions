@@ -46,6 +46,24 @@ public class ParkingSlotController
         return "Updated";
     }
 
+    @PostMapping(path = "/setBooked")
+    public @ResponseBody String setBooked(Long id)
+    {
+        ParkingSlot p = parkingSlotRepository.findById(id).get();
+        p.setBooked(true);
+        parkingSlotRepository.save(p);
+        return "Saved";
+    }
+
+    @PostMapping(path = "/setNotBooked")
+    public @ResponseBody String setNotBooked(Long id)
+    {
+        ParkingSlot p = parkingSlotRepository.findById(id).get();
+        p.setBooked(false);
+        parkingSlotRepository.save(p);
+        return "Saved";
+    }
+
     @PostMapping(path = "/add")
     public @ResponseBody String addNewSlot(@RequestParam Long locationId, @RequestParam String locationName)
     {
