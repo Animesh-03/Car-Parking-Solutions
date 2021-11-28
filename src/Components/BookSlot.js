@@ -18,6 +18,7 @@ const BookSlot = () => {
     var slotId = params.id;
     const [checkInTime,setCheckInTime] = useState("");
     const [checkOutTime,setCheckOutTime] = useState("");
+    const [bookingDate,setBookingDate] = useState("");
 
     const [dryWash,setDryWash] = useState(false);
     const [carWash,setCarWash] = useState(false);
@@ -84,6 +85,7 @@ const BookSlot = () => {
             wantRepairs:repairs,
             checkInTime:checkInTime,
             checkOutTime:checkOutTime,
+            bookingDate:bookingDate,
             amount:calculatePayment(),
         }}).then(res => {
             console.log(res);
@@ -98,12 +100,18 @@ const BookSlot = () => {
         <div className="container-fluid">
             <p>{JSON.stringify(slot)}</p>
             
+            <input id="booking-date" placeholder="Booking Date"
+            onChange={(e) => setBookingDate(e.target.value)} />
+            <br /><br />
             <input id="check-in-time" placeholder="Check in time"
             value={checkInTime}
             onChange={(e) => setCheckInTime(e.target.value)} />
+            <br /><br />
             <input id="check-out-time" placeholder="Check out time"
             value={checkOutTime}
             onChange={(e) => setCheckOutTime(e.target.value)} />
+            <br /><br />
+            
             
             
             <h1>Additional Options</h1>

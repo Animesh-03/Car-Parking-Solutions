@@ -21,8 +21,9 @@ public class Order
     private String checkOutTime;
     private Long amount;
     private boolean checkedOut;
+    private String bookingDate;
 
-    public Order(Long locationId, Long bookedBy, Long slotId, boolean wantDryWash, boolean wantCarWash, boolean wantRepairs, String checkInTime, String checkOutTime, Long amount)
+    public Order(Long locationId, Long bookedBy, Long slotId, boolean wantDryWash, boolean wantCarWash, boolean wantRepairs, String checkInTime, String checkOutTime, Long amount, String bookingDate)
     {
         this.locationId = locationId;
         this.bookedBy = bookedBy;
@@ -33,6 +34,7 @@ public class Order
         this.checkOutTime = checkOutTime;
         this.amount = amount;
         this.checkedOut = false;
+        this.bookingDate = bookingDate;
     }
 
     public Order()
@@ -73,6 +75,9 @@ public class Order
     public boolean getCheckedOut() {
         return checkedOut;
     }
+    public String getBookingDate() {
+        return bookingDate;
+    }
     public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
@@ -106,6 +111,9 @@ public class Order
     public void setCheckedOut(boolean checkedOut)
     {
         this.checkedOut = checkedOut;
+    }
+    public void setBookingDate(String bookingDate) {
+        this.bookingDate = bookingDate;
     }
 }
 
