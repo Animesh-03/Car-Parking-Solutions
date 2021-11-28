@@ -28,6 +28,7 @@ const SlotsInLocation = () => {
                 var li = document.createElement("li");
                 li.append(document.createTextNode(JSON.stringify(slt)));
                 li.onclick = () => history.push("/slots/" + slt.id,{user:user});
+                li.id= "slot-item";
                 ul.appendChild(li);
             });
         });

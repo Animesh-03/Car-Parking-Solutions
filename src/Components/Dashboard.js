@@ -24,11 +24,12 @@ const Dashboard = () => {
         axios.get("http://localhost:8080/location/all")
         .then((res) => {            
             locations = res.data;
-            var ul = document.getElementById("all-slots");
+            var ul = document.getElementById("all-locations");
             locations.forEach(loc => {
                 var li = document.createElement("li");
                 li.append(document.createTextNode(JSON.stringify(loc)));
                 li.onclick = () => history.push("/location/" + loc.id,{user:user});
+                li.id = "location-item";
                 ul.appendChild(li);
             });
 
@@ -44,6 +45,7 @@ const Dashboard = () => {
                 let li = document.createElement("li");
                 li.onclick = (e) => history.push("/orders/" + o.orderId, {order:o,user:user});
                 li.appendChild(document.createTextNode(JSON.stringify(o)));
+                li.id = "order-item"; 
                 console.log(li);
                 ul.appendChild(li);
             });
@@ -72,7 +74,7 @@ const Dashboard = () => {
             <div className="container-fluid">
                 <h1>Hello, {user.firstName}</h1>
                 <h2>All Locations </h2>
-                <ul id="all-slots"></ul>
+                <ul id="all-locations"></ul>
                 <h2>Your Orders</h2>
                 {/* <p>{JSON.stringify(orders)}</p> */}
                 <ul id="order-list"></ul>

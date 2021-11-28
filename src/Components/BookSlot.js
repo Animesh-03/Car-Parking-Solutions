@@ -74,11 +74,11 @@ const BookSlot = () => {
             
             <h1>Additional Options</h1>
             <input type="checkbox" id="dryWash-chkbox"  onChange={(e) => setDryWash(e.target.value)} />
-            <label htmlFor="dryWash-chkbox">Request Dry Wash</label>
+            <label id="dryWash-label" htmlFor="dryWash-chkbox">Request Dry Wash</label>
             <input type="checkbox" id="carWash-chkbox"  onChange={(e) => setCarWash(e.target.value)} />
-            <label htmlFor="carWash-chkbox">Request Car Wash</label>
+            <label id="carWash-label" htmlFor="carWash-chkbox">Request Car Wash</label>
             <input type="checkbox" id="repairs-chkbox"  onChange={(e) => setRepairs(e.target.value)} />
-            <label htmlFor="repairs-chkbox">Request Repairs</label>
+            <label id="repairs-label" htmlFor="repairs-chkbox">Request Repairs</label>
             <br /><br />
             <button className="btn btn-primary" onClick={handleSubmit}>Submit</button>
         </div>
