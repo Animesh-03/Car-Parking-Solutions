@@ -30,7 +30,36 @@ const BookSlot = () => {
             id:slotId
         }}).then((res) => {
             setSlot(res.data);
-
+            axios.get("http://localhost:8080/location/get",{params:{
+                id: res.data.locationId
+            }}).then(res => {
+                let location = res.data;
+                console.log(location);
+                setTimeout(() => {
+                    if(location.dryWashOffered == false)
+                    {
+                        let chkBox = document.getElementById("dryWash-chkbox");
+                        let label = document.getElementById("dryWash-label");
+                        chkBox.remove();
+                        label.remove();
+                        console.log("Removed DryWash");
+                    }
+                    if(location.carWashOffered == false)
+                    {
+                        let chkBox = document.getElementById("carWash-chkbox");
+                        let label = document.getElementById("carWash-label");
+                        chkBox.remove();
+                        label.remove();
+                    }
+                    if(location.repairsOffered == false)
+                    {
+                        let chkBox = document.getElementById("repairs-chkbox");
+                        let label = document.getElementById("repairs-label");
+                        chkBox.remove();
+                        label.remove();
+                    }
+                },10);
+            })
         })
     },[]);
 

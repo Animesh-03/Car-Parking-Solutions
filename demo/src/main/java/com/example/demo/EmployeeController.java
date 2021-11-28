@@ -40,9 +40,30 @@ public class EmployeeController
         return "Saved";
     }
 
+    @PostMapping(path = "/addRating")
+    public @ResponseBody String addRating(Long id, Float rating)
+    {
+        Employee e = employeeRepository.findById(id).get();
+        float currentRating = e.getRating();
+        int currentOrders = e.getNumberOfOrders();
+        float newRating = ((currentOrders*currentRating) + rating)/(currentOrders+1);
+        e.setNumberOfOrders(currentOrders + 1);
+        e.setRating(newRating);
+
+        employeeRepository.save(e);
+
+        return "Saved";
+    }
+
     @GetMapping(path = "/getByUsername")
     public @ResponseBody Employee getEmployee(@RequestParam String userName)
     {
         return employeeRepository.findByUserName(userName);
+    }
+
+    @GetMapping(path = "getByAssignedTo")
+    public Employee getEmployeeByAssignedTo(Long id)
+    {
+        return employeeRepository.findByAssignedTo(id);
     }
 }

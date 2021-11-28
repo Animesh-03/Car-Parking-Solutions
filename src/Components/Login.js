@@ -41,7 +41,7 @@ const Login = () => {
                         console.log(isLoggedIn);
                         console.log(user);
                         localStorage.setItem("currentUser",JSON.stringify(user));
-                        if(user.email == null || user.firstName == null || user.lastName == null || user.password == null || user.username == null || user.phoneNumber == null)
+                        if(user.role != "admin" && user.email == null || user.firstName == null || user.lastName == null || user.password == null || user.username == null || user.phoneNumber == null)
                         {
                             history.push("/editDetails",{user:user});
                         }

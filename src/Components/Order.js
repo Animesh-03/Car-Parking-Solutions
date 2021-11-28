@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router";
 
 const Order = () => {
@@ -7,8 +8,25 @@ const Order = () => {
 
     const order  = location.order;
     const user = location.user;
+    const [employee,setEmployee] = useState();
+
+    const [employeeFound,setEmployeeFound] = useState(false);
+    const [employeeId,setEmployeeId] = useState();
+
 
     console.log(location);
+
+    useEffect(() => {
+        axios.get("http://localhost:8080/employee/getByAssignedTo",{params:{
+            id:order.locationId
+        }}).then(res => {
+            setEmployee(res.data);
+            setEmployeeFound(true);
+            setEmployeeId(res.data.id);
+            console.log(res.data);
+        });
+    },[])
+
 
     const checkout = () => {
         axios.post("http://localhost:8080/users/checkout",null,{params:{
@@ -27,14 +45,26 @@ const Order = () => {
                 }}).then(res => {
                     history.goBack();
                 });
+                let rating = prompt("Enter your rating (1-5) for the employee");
+                console.log(rating);
+                axios.post("http://localhost:8080/employee/addRating",null,{params:{
+                    id:employeeId,
+                    rating:rating
+                }});
             }
         })
     }
 
     return ( 
         <div className="order">
+            <div id="employee-assigned">
+                <h2>Your Booking is assigned to: {employeeFound && employee.firstName}</h2>
+            </div>
             {JSON.stringify(order)}
+            <br />
             <button id="checkout" onClick={checkout}>Checkout</button>
+            <br /><br /><br />
+            <p id="rating-reminder">Make sure to rate {employeeFound && employee.firstName} based on your experience! </p>
         </div>
      );
 }

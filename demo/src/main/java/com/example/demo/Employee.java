@@ -18,6 +18,8 @@ public class Employee
     private Long assignedTo;
     private String userName;
     private String password;
+    private float rating;
+    private Integer numberOfOrders;
 
     public Employee()
     {
@@ -33,6 +35,8 @@ public class Employee
         this.assignedTo = assignedTo;
         this.userName = userName;
         this.password = password;
+        this.rating = 0;
+        this.numberOfOrders = (int)0;
     }
 
     public Long getId() {
@@ -60,6 +64,12 @@ public class Employee
     public String getPassword() {
         return password;
     }
+    public float getRating() {
+        return rating;
+    }
+    public Integer getNumberOfOrders() {
+        return numberOfOrders;
+    }
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -80,6 +90,12 @@ public class Employee
     }
     public void setPassword(String password) {
         this.password = password;
+    }
+    public void setNumberOfOrders(Integer numberOfOrders) {
+        this.numberOfOrders = numberOfOrders;
+    }
+    public void setRating(Float rating) {
+        this.rating = rating;
     }
 
 }
