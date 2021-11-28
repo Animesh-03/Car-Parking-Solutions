@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import firebase from '../Others/firebase';
 import { LoginContext } from './LoginContext';
 import { UserContext } from './UserContext';
-import {getAuth, signInWithPopup, GoogleAuthProvider} from 'firebase/auth'
+import {getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider} from 'firebase/auth'
 
 const Login = () => {
 
@@ -143,6 +143,49 @@ const Login = () => {
     }
 
     const handleFacebookSignIn = () => {
+        const provider = new FacebookAuthProvider();
+        const auth = getAuth();
+
+        signInWithPopup(auth,provider)
+        .then(res => {
+            const FacebookUser = res.user;
+            console.log(FacebookUser);
+
+            let user;
+
+            axios.get("http://localhost:8080/users/getByEmail",{params:{
+                email:FacebookUser.email
+            }}).then(res => {
+                console.log(res);
+                if(res.data == "")
+                {
+                    console.log("User does not exist");
+                    axios.post("http://localhost:8080/users/emailAdd",null,{params:{
+                        email:FacebookUser.email,
+                        firstName:FacebookUser.displayName
+                    }}).then(res => {
+                        user = res.data;
+                        console.log("New User created: " + user);
+                        history.push("/editDetails",{user:user})
+                    });
+                }
+                else
+                {
+                    user = res.data;
+                    console.log("User exists");
+                    if(user.email == null || user.firstName == null || user.lastName == null || user.phoneNumber == null || user.address == null || user.zipCode == null)
+                    {
+                        console.log("User existed with incomplete profile: " + user);
+                        history.push("/editDetails",{user:user});
+                    }
+                    else
+                    {
+                        history.push("/dashboard",{user:user});
+                    }
+                }
+                        
+            });
+        })
 
     }
 
