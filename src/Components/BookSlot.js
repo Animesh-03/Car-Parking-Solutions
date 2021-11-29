@@ -65,8 +65,14 @@ const BookSlot = () => {
         })
     },[]);
 
-    const calculatePayment = () => {
-        return 100;
+    const calculatePayment = (chkInTime,chkOutTime) => {
+        let amount = 100;
+        let hours = chkOutTime[0] - chkInTime[0];
+        let min = chkOutTime[1] - chkOutTime[1];
+        amount += hours*25;
+        amount += min/60*25;
+
+        return amount;
     }
 
     const handleSubmit = (e) => {
@@ -86,7 +92,7 @@ const BookSlot = () => {
             checkInTime:checkInTime,
             checkOutTime:checkOutTime,
             bookingDate:bookingDate,
-            amount:calculatePayment(),
+            amount:calculatePayment(chkInTime,chkOutTime),
         }}).then(res => {
             console.log(res);
 

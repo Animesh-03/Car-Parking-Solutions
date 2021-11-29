@@ -59,7 +59,7 @@ const Order = () => {
                 });
                 
             }
-        })
+        });
     }
 
     return ( 
@@ -69,6 +69,7 @@ const Order = () => {
             </div>
             {JSON.stringify(order)}
             <br />
+            <p>You need to pay: {order.amount} </p>
             <button id="checkout" onClick={checkout}>Checkout</button>
             <br /><br /><br />
             <p id="rating-reminder">Make sure to rate {employeeFound && employee.firstName} based on your experience! </p>
