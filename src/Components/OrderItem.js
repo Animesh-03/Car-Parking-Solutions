@@ -5,12 +5,14 @@ import { useHistory } from "react-router";
 const OrderItem = (props) => {
     const history = useHistory();
 
+    //Getting props
     const order = props.order;
     const user = props.user;
 
     const [locationName,setLocationName] = useState();
     const [foundLocationName,setFoundLocation] = useState(false);
     
+    //Getting location name through ID
     useEffect(() => {
         axios.get("http://localhost:8080/location/get",{params:{
             id:order.locationId

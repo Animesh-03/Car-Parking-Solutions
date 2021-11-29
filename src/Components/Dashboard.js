@@ -38,18 +38,6 @@ const Dashboard = () => {
         }}).then(res => {
             setOrders(res.data);
             setFoundOrders(true);
-
-            // orders = res.data;
-            // console.log(orders);
-            // var ul = document.getElementById("order-list");
-            // orders.forEach(o => {
-            //     let li = document.createElement("li");
-            //     li.onclick = (e) => history.push("/orders/" + o.orderId, {order:o,user:user});
-            //     li.appendChild(document.createTextNode(JSON.stringify(o)));
-            //     li.id = "order-item"; 
-            //     console.log(li);
-            //     ul.appendChild(li);
-            // });
         })
     },[]);
 
