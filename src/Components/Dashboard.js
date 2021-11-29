@@ -5,6 +5,7 @@ import { Link, useLocation, useParams, Router } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import LocationItem from "./LocationItem";
 import { LoginContext } from "./LoginContext";
+import OrderItem from "./OrderItem";
 import { UserContext } from "./UserContext";
 
 
@@ -17,10 +18,13 @@ const Dashboard = () => {
     const [userBalance,setUserBalance] = useState(user.balance);
     
     const [balance,setBalance] = useState(0);
-    let orders = [];
+    
 
     const [locations,setLocations] = useState();  
-    const [foundLocations,setFoundLocations] = useState(false);  
+    const [foundLocations,setFoundLocations] = useState(false); 
+    
+    const [orders,setOrders] = useState();
+    const [foundOrders,setFoundOrders] = useState(false);
 
     useEffect(() => {
         axios.get("http://localhost:8080/location/all")
@@ -32,17 +36,20 @@ const Dashboard = () => {
         axios.get("http://localhost:8080/orders/get",{params:{
             id:user.id
         }}).then(res => {
-            orders = res.data;
-            console.log(orders);
-            var ul = document.getElementById("order-list");
-            orders.forEach(o => {
-                let li = document.createElement("li");
-                li.onclick = (e) => history.push("/orders/" + o.orderId, {order:o,user:user});
-                li.appendChild(document.createTextNode(JSON.stringify(o)));
-                li.id = "order-item"; 
-                console.log(li);
-                ul.appendChild(li);
-            });
+            setOrders(res.data);
+            setFoundOrders(true);
+
+            // orders = res.data;
+            // console.log(orders);
+            // var ul = document.getElementById("order-list");
+            // orders.forEach(o => {
+            //     let li = document.createElement("li");
+            //     li.onclick = (e) => history.push("/orders/" + o.orderId, {order:o,user:user});
+            //     li.appendChild(document.createTextNode(JSON.stringify(o)));
+            //     li.id = "order-item"; 
+            //     console.log(li);
+            //     ul.appendChild(li);
+            // });
         })
     },[]);
 
@@ -71,7 +78,7 @@ const Dashboard = () => {
                 <ul id="all-locations">{foundLocations && (locations.map((loc) => <LocationItem location={JSON.stringify(loc)} user={JSON.stringify(user)} />))}</ul>
                 <h2>Your Orders</h2>
                 {/* <p>{JSON.stringify(orders)}</p> */}
-                <ul id="order-list"></ul>
+                <ul id="order-list">{foundOrders && (orders.map((o) => <OrderItem order={o} user={user} />))}</ul>
                 <h2>Add Balance</h2>
                 <input id="add-balance" placeholder="Add amount to Wallet" onChange={e => setBalance(e.target.value)} />
                 <button id="add-balance-btn" onClick={addBalance}>Add to Wallet</button>
