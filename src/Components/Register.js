@@ -52,7 +52,7 @@ const Register = () => {
             userID:username
         }}).then(res => {
             let usernameExists = false;
-            if(res.data != null)
+            if(res.data.length != 0)
             {
                 alert("Username already exists, please use a different username");
                 setUserNameErrorMsg("Username already exists, please use a different username");
