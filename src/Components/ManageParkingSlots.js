@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import LocationItem from "./LocationItem";
+import SlotItem from "./SlotItem";
 
 const ManageParkingSlots = () => {
 
@@ -43,6 +44,7 @@ const ManageParkingSlots = () => {
         }}),10);
     }
 
+    let slotNumber = 1;
     return ( 
         <div className="ManageParkingSlots">
             <h2>Manage Parking Slots</h2>
@@ -62,7 +64,7 @@ const ManageParkingSlots = () => {
             <input id="slot-locationId" placeholder="Location ID" onChange={(e) => setLocationId(e.target.value)} />
             <button onClick={postSlot} >Post Slot </button>
             <h3>All Slots</h3>
-            <p>{JSON.stringify(slots)}</p>
+            <ul>{foundSlots && (slots.map((o) => <SlotItem slot={o} user={null} admin={true} slotNumber={slotNumber++}  />))}</ul>
         </div>
      );
 }
