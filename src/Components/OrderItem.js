@@ -23,7 +23,7 @@ const OrderItem = (props) => {
     },[])
     
     return ( 
-        <div id="order-item" onClick={(e) => history.push("/orders/" + order.orderId, {order:order,user:user})}>
+        <div id="order-item" onClick={(e) => {if(props.admin == false) history.push("/orders/" + order.orderId, {order:order,user:user});}}>
             <h3>{foundLocationName && locationName}</h3>
             <p>Booking For: {order.bookingDate} </p>
             <p>Check In Time: {order.checkInTime}, Check Out Time:{order.checkOutTime}</p>

@@ -66,7 +66,7 @@ const Dashboard = () => {
                 <ul id="all-locations">{foundLocations && (locations.map((loc) => <LocationItem location={JSON.stringify(loc)} user={JSON.stringify(user)} admin={false} />))}</ul>
                 <h2>Your Orders</h2>
                 {/* <p>{JSON.stringify(orders)}</p> */}
-                <ul id="order-list">{foundOrders && (orders.map((o) => <OrderItem order={o} user={user} />))}</ul>
+                <ul id="order-list">{foundOrders && (orders.map((o) => <OrderItem order={o} user={user} admin={false} />))}</ul>
                 <h2>Add Balance</h2>
                 <input id="add-balance" placeholder="Add amount to Wallet" onChange={e => setBalance(e.target.value)} />
                 <button id="add-balance-btn" onClick={addBalance}>Add to Wallet</button>
