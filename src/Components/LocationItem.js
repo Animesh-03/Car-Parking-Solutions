@@ -7,11 +7,12 @@ const LocationItem = (props) => {
     const loc = JSON.parse(props.location);
     const user = JSON.parse(props.user);
 
+
     console.log(loc);
 
     return (
         //OnClick event to div
-        <div id="location-item" onClick={ (e) => history.push("/location/" + loc.id,{user:user})} >
+        <div id="location-item" onClick={ (e) =>{ if(props.admin == false) history.push("/location/" + loc.id,{user:user});}} >
             <h3>{loc.location}</h3>
             <label htmlFor="location-item-dryWash">Dry Wash</label>
             <input id="location-item-dryWash" disabled={true} type="checkbox" checked={loc.dryWashOffered} />

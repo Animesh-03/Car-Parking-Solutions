@@ -63,7 +63,7 @@ const Dashboard = () => {
             <div className="container-fluid">
                 <h1>Hello, {user.firstName}</h1>
                 <h2>All Locations </h2>
-                <ul id="all-locations">{foundLocations && (locations.map((loc) => <LocationItem location={JSON.stringify(loc)} user={JSON.stringify(user)} />))}</ul>
+                <ul id="all-locations">{foundLocations && (locations.map((loc) => <LocationItem location={JSON.stringify(loc)} user={JSON.stringify(user)} admin={false} />))}</ul>
                 <h2>Your Orders</h2>
                 {/* <p>{JSON.stringify(orders)}</p> */}
                 <ul id="order-list">{foundOrders && (orders.map((o) => <OrderItem order={o} user={user} />))}</ul>

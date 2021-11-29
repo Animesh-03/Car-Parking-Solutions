@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import LocationItem from "./LocationItem";
 
 const ManageParkingSlots = () => {
 
@@ -11,11 +12,13 @@ const ManageParkingSlots = () => {
     const [locationId,setLocationId] = useState();
 
     const [slots,setSlots] = useState();
+    const [foundSlots,setFoundSlots] = useState(false);
     const [spaces,setSpaces] = useState();
+    const [foundSpaces,setFoundSpaces] = useState(false);
 
     useEffect(() => {
-        axios.get("http://localhost:8080/slots/all").then((res) => {console.log(res.data); setSlots(res.data); });
-        axios.get("http://localhost:8080/location/all").then((res) => setSpaces(res.data));
+        axios.get("http://localhost:8080/slots/all").then((res) => {console.log(res.data); setSlots(res.data);  setFoundSlots(true);});
+        axios.get("http://localhost:8080/location/all").then((res) =>{ setSpaces(res.data); setFoundSpaces(true)});
     },[])
 
     const postLocation = () => {
@@ -53,7 +56,7 @@ const ManageParkingSlots = () => {
             <label htmlFor="repairs-chkbox">Request Repairs</label>
             <button onClick={postLocation}>Post</button>
             <h3>All Locations</h3>
-            <p>{JSON.stringify(spaces)}</p>
+            <ul id="all-admin-locations">{foundSpaces && (spaces.map((loc) => <LocationItem location={JSON.stringify(loc)} user={null} admin={true} />))}</ul>
 
             <h2>Manage Slots</h2>
             <input id="slot-locationId" placeholder="Location ID" onChange={(e) => setLocationId(e.target.value)} />
