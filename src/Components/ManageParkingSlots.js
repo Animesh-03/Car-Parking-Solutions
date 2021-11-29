@@ -45,11 +45,11 @@ const ManageParkingSlots = () => {
             <h2>Manage Parking Slots</h2>
             <h2> Manage Location </h2>
             <input id="parking-location" placeholder="Location" onChange={(e) => setLocation(e.target.value)} />
-            <input type="checkbox" id="dryWash-chkbox" value={dryWash} onChange={(e) => setDryWash(e.target.value)} />
+            <input type="checkbox" id="dryWash-chkbox" onChange={(e) => setDryWash(e.target.value)} />
             <label htmlFor="dryWash-chkbox">Request Dry Wash</label>
-            <input type="checkbox" id="carWash-chkbox" value={carWash} onChange={(e) => setCarWash(e.target.value)} />
+            <input type="checkbox" id="carWash-chkbox" onChange={(e) => setCarWash(e.target.value)} />
             <label htmlFor="carWash-chkbox">Request Car Wash</label>
-            <input type="checkbox" id="repairs-chkbox" value={repairs} onChange={(e) => setRepairs(e.target.value)} />
+            <input type="checkbox" id="repairs-chkbox" onChange={(e) => setRepairs(e.target.value)} />
             <label htmlFor="repairs-chkbox">Request Repairs</label>
             <button onClick={postLocation}>Post</button>
             <h3>All Locations</h3>

@@ -3,6 +3,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { renderIntoDocument } from "react-dom/test-utils";
 import { Link, useLocation, useParams, Router } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import LocationItem from "./LocationItem";
 import { LoginContext } from "./LoginContext";
 import { UserContext } from "./UserContext";
 
@@ -18,21 +19,14 @@ const Dashboard = () => {
     const [balance,setBalance] = useState(0);
     let orders = [];
 
-    let locations = [];    
+    const [locations,setLocations] = useState();  
+    const [foundLocations,setFoundLocations] = useState(false);  
 
     useEffect(() => {
         axios.get("http://localhost:8080/location/all")
-        .then((res) => {            
-            locations = res.data;
-            var ul = document.getElementById("all-locations");
-            locations.forEach(loc => {
-                var li = document.createElement("li");
-                li.append(document.createTextNode(JSON.stringify(loc)));
-                li.onclick = () => history.push("/location/" + loc.id,{user:user});
-                li.id = "location-item";
-                ul.appendChild(li);
-            });
-
+        .then((res) => {    
+            setLocations(res.data);
+            setFoundLocations(true);
         });
 
         axios.get("http://localhost:8080/orders/get",{params:{
@@ -74,7 +68,7 @@ const Dashboard = () => {
             <div className="container-fluid">
                 <h1>Hello, {user.firstName}</h1>
                 <h2>All Locations </h2>
-                <ul id="all-locations"></ul>
+                <ul id="all-locations">{foundLocations && (locations.map((loc) => <LocationItem location={JSON.stringify(loc)} user={JSON.stringify(user)} />))}</ul>
                 <h2>Your Orders</h2>
                 {/* <p>{JSON.stringify(orders)}</p> */}
                 <ul id="order-list"></ul>
