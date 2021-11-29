@@ -68,7 +68,7 @@ const BookSlot = () => {
     const calculatePayment = (chkInTime,chkOutTime) => {
         let amount = 100;
         let hours = chkOutTime[0] - chkInTime[0];
-        let min = chkOutTime[1] - chkOutTime[1];
+        let min = chkOutTime[1] - chkInTime[1];
         console.log(chkOutTime[1] - chkOutTime[1]);
         if(min < 0)
         {
@@ -83,7 +83,7 @@ const BookSlot = () => {
         if(carWash) amount += 250;
         if(repairs) amount += 300;
 
-        return amount;
+        return Math.round(amount);
     }
 
     const handleSubmit = (e) => {
