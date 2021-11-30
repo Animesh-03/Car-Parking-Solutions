@@ -1,9 +1,11 @@
 import axios from 'axios';
 import {useEffect, useState} from 'react'
+import EmployeeItem from './EmployeeItem';
 
 const ManageEmployees = () => {
 
     const [employees,setEmployees] = useState();
+    const [foundEmployees,setFoundEmployees] = useState(false);
 
     const [firstName,setFirstName] = useState("");
     const [lastName,setLastName] = useState("");
@@ -31,7 +33,7 @@ const ManageEmployees = () => {
     }
 
     useEffect(() => {
-        axios.get("http://localhost:8080/employee/all").then((res) => setEmployees(res.data));
+        axios.get("http://localhost:8080/employee/all").then((res) => {setEmployees(res.data); setFoundEmployees(true)});
     },[])
 
 
@@ -49,7 +51,7 @@ const ManageEmployees = () => {
             <button id="employee-add-btn" onClick={handleAddEmployee} >Add</button>
 
             <h2>Employee List</h2>
-            <p>{JSON.stringify(employees)}</p>
+            <ul>{foundEmployees && (employees.map((employee) => <EmployeeItem employee={employee} />))}</ul>
         </div>  
      );
 }

@@ -35,6 +35,7 @@ public class EmployeeController
         e.setPhoneNumber(phoneNumber);
         e.setUserName(userName);
         e.setPassword(password);
+        e.setNumberOfOrders(0);
         
         employeeRepository.save(e);
         return "Saved";

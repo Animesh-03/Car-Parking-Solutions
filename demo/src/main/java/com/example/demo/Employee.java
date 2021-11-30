@@ -19,7 +19,7 @@ public class Employee
     private String userName;
     private String password;
     private float rating;
-    private Integer numberOfOrders;
+    private int numberOfOrders;
 
     public Employee()
     {
@@ -36,7 +36,6 @@ public class Employee
         this.userName = userName;
         this.password = password;
         this.rating = 0;
-        this.numberOfOrders = (int)0;
     }
 
     public Long getId() {
