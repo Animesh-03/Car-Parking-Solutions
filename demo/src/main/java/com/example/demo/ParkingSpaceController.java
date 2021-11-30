@@ -35,5 +35,13 @@ public class ParkingSpaceController
         parkingSpaceRepository.save(p);
         return "Saved";
     }
+
+    @PostMapping(path = "/delete")
+    public @ResponseBody String deleteLocation(@RequestParam Long id)
+    {
+        parkingSpaceRepository.deleteById(id);
+
+        return "Deleted";
+    }
     
 }

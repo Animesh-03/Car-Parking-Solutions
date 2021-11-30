@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useHistory, useLocation, useParams } from "react-router";
 
 const LocationItem = (props) => {
@@ -7,8 +8,11 @@ const LocationItem = (props) => {
     const loc = JSON.parse(props.location);
     const user = JSON.parse(props.user);
 
-
-    console.log(loc);
+    const handleDelete = () => {
+        axios.post("http://localhost:8080/location/delete",null,{params:{
+            id:loc.id
+        }});
+    }
 
     return (
         //OnClick event to div
@@ -20,6 +24,8 @@ const LocationItem = (props) => {
             <input id="location-item-carWash" disabled={true} type="checkbox" checked={loc.carWashOffered} />
             <label htmlFor="location-item-repairs">Repairs</label>
             <input id="location-item-repairs" disabled={true} type="checkbox" checked={loc.repairsOffered} />
+            <br />
+            {props.admin && <button id="delete-location-item-btn" onClick={handleDelete} >Delete</button>}
         </div>
         
 

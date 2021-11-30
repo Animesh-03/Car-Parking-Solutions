@@ -20,10 +20,17 @@ const SlotItem = (props) => {
         })
     },[]);
 
+    const handleDelete = () => {
+        axios.post("http://localhost:8080/slots/delete",null,{params:{
+            id:slot.id
+        }});
+    }
+
     return ( 
         <div id="slot-item" onClick={(e) => {if(props.admin == false) history.push("/slots/" + slot.id,{user:user});}}>
             <h3>{" Slot Number : " + props.slotNumber}</h3>
             <p>Location: <b>{foundLocationName && locationName}</b>, Preferred Car: <b>{slot.preference}</b></p>
+            {props.admin && <button id="delete-slot-item" onClick={handleDelete} >Delete</button>}
         </div>
      );
 }

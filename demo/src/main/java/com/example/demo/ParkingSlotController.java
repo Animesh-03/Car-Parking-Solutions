@@ -77,4 +77,12 @@ public class ParkingSlotController
         parkingSlotRepository.save(slot);
         return "Saved";
     }
+
+    @PostMapping(path= "/delete")
+    public @ResponseBody String deleteSlot(@RequestParam Long id)
+    {
+        parkingSlotRepository.deleteById(id);
+
+        return "Deleted";
+    }
 }
