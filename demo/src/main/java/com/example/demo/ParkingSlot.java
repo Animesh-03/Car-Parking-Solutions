@@ -13,13 +13,15 @@ public class ParkingSlot
     private Long id;
     private Long locationId;
     private String locationName;
+    private String preference;
     private boolean isBooked;
 
-    public ParkingSlot(Long locationId,String locationName)
+    public ParkingSlot(Long locationId,String locationName, String preference)
     {
         this.locationId = locationId;
         this.locationName = locationName;
         this.isBooked = false;
+        this.preference = preference;
     }
 
     public ParkingSlot()
@@ -40,6 +42,9 @@ public class ParkingSlot
     public String getLocationName() {
         return locationName;
     }
+    public String getPreference() {
+        return preference;
+    }
     public void setBooked(boolean isBooked) {
         this.isBooked = isBooked;
     }
@@ -51,6 +56,9 @@ public class ParkingSlot
     }
     public void setLocationName(String locationName) {
         this.locationName = locationName;
+    }
+    public void setPreference(String preference) {
+        this.preference = preference;
     }
 
 

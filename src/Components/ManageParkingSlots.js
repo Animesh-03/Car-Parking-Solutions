@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import LocationItem from "./LocationItem";
 import SlotItem from "./SlotItem";
+import PreferenceList from "./PreferenceList";
 
 const ManageParkingSlots = () => {
 
@@ -9,6 +10,8 @@ const ManageParkingSlots = () => {
     const [dryWash,setDryWash] = useState(false);
     const [carWash,setCarWash] = useState(false);
     const [repairs,setRepairs] = useState(false);
+
+    const [preference,setPreference] = useState();
 
     const [locationId,setLocationId] = useState();
 
@@ -41,6 +44,7 @@ const ManageParkingSlots = () => {
         setTimeout(() => axios.post("http://localhost:8080/slots/add",null,{params:{
             locationId:locationId,
             locationName:parkingLoc,
+            preference:preference
         }}),10);
     }
 
@@ -62,6 +66,9 @@ const ManageParkingSlots = () => {
 
             <h2>Manage Slots</h2>
             <input id="slot-locationId" placeholder="Location ID" onChange={(e) => setLocationId(e.target.value)} />
+                <select onChange={(e) => {setPreference(e.target.value); console.log(e.target.value)}}>
+                    {PreferenceList.list.map((pref) => <option value={pref}>{pref}</option>)}
+                </select>
             <button onClick={postSlot} >Post Slot </button>
             <h3>All Slots</h3>
             <ul>{foundSlots && (slots.map((o) => <SlotItem slot={o} user={null} admin={true} slotNumber={slotNumber++}  />))}</ul>

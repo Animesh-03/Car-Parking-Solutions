@@ -14,6 +14,9 @@ const SlotsInLocation = () => {
     const [slots,setSlots] = useState();
     const [foundSlots,setFoundSlots] = useState(false);
 
+    const[preferredSlots,setPreferredSlots] = useState();
+    const [foundPreferred,setFoundPreferred] = useState(false);
+
     const locId = params.id;
     const user = location.state.user;
 
@@ -26,14 +29,21 @@ const SlotsInLocation = () => {
             setSlots(res.data);
             setFoundSlots(true);
         });
+
+        axios.get("http://localhost:8080/slots/getByLocationAndPreference",{params:{
+            id:locId,
+            preference:user.carModel
+        }}).then(res => {setPreferredSlots(res.data); setFoundPreferred(true)});
         
     },[]);
 
     let slotNumber = 1;
     return ( 
         <div className="slots-in-location">
-            <h2>Slots</h2>
-            <ul id="slots-list">{foundSlots && (slots.map((o) => <SlotItem slot={o} user={user} admin={false} slotNumber={slotNumber++}  />))}</ul>
+            <h2>Suggested Slots </h2>
+            <ul>{foundPreferred &&(preferredSlots.map(slt => <SlotItem slot={slt} user={user} admin={false} slotNumber={slotNumber++}  />))}</ul>
+            <h2>All Slots</h2>
+            <ul id="slots-list">{foundSlots && (slots.map((slt) => <SlotItem slot={slt} user={user} admin={false} slotNumber={slotNumber++}  />))}</ul>
         </div>
      );
 }

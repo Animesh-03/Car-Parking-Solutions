@@ -23,7 +23,7 @@ const SlotItem = (props) => {
     return ( 
         <div id="slot-item" onClick={(e) => {if(props.admin == false) history.push("/slots/" + slot.id,{user:user});}}>
             <h3>{" Slot Number : " + props.slotNumber}</h3>
-            <p>Location: {foundLocationName && locationName}</p>
+            <p>Location: <b>{foundLocationName && locationName}</b>, Preferred Car: <b>{slot.preference}</b></p>
         </div>
      );
 }

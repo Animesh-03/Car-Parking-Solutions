@@ -37,6 +37,12 @@ public class ParkingSlotController
         return parkingSlotRepository.findById(id).get();
     }
 
+    @GetMapping(path="/getByLocationAndPreference")
+    public @ResponseBody Iterable<ParkingSlot> getParkingSlotInLocationByPreference(@RequestParam Long id, @RequestParam String preference)
+    {
+        return parkingSlotRepository.findAllByLocationAndPreference(id, preference);
+    }
+
     @PostMapping(path = "/update")
     public @ResponseBody String updateSlot(@RequestParam Long slotId,@RequestParam boolean isBooked)
     {
@@ -65,9 +71,9 @@ public class ParkingSlotController
     }
 
     @PostMapping(path = "/add")
-    public @ResponseBody String addNewSlot(@RequestParam Long locationId, @RequestParam String locationName)
+    public @ResponseBody String addNewSlot(@RequestParam Long locationId, @RequestParam String locationName, @RequestParam String preference)
     {
-        ParkingSlot slot = new ParkingSlot(locationId,locationName);
+        ParkingSlot slot = new ParkingSlot(locationId,locationName,preference);
         parkingSlotRepository.save(slot);
         return "Saved";
     }

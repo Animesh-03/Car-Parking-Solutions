@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
 import { useHistory, useLocation } from "react-router";
+import PreferenceList from "./PreferenceList";
 
 const EditDetails = () => {
     const location = useLocation().state;
     const history = useHistory();
     const user = location.user;
+
+    const [preference,setPreference] = useState();
 
     const editDetails = () => {
         axios.post("http://localhost:8080/users/update",null,{params:{
@@ -58,7 +61,10 @@ const EditDetails = () => {
             <br />
             <div id="car-model">
                 <label htmlFor="car-model-input" >Car Model </label>
-                <input id="car-model-input" placeholder="Car Model" defaultValue={user.carModel} onChange={e => user.carModel=e.target.value} />
+                {/* <input id="car-model-input" placeholder="Car Model" defaultValue={user.carModel} onChange={e => user.carModel=e.target.value} /> */}
+                <select onChange={(e) => {user.carModel = e.target.value}}>
+                    {PreferenceList.list.map((pref) => <option value={pref}>{pref}</option>)}
+                </select>
             </div>
             <br />
             <div id="car-number">
