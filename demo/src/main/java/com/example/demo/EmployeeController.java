@@ -56,6 +56,13 @@ public class EmployeeController
         return "Saved";
     }
 
+    @PostMapping(path = "/delete")
+    public @ResponseBody String deleteEmployee(@RequestParam Long id)
+    {
+        employeeRepository.deleteById(id);
+        return "Deleted";
+    }
+
     @GetMapping(path = "/getByUsername")
     public @ResponseBody Employee getEmployee(@RequestParam String userName)
     {

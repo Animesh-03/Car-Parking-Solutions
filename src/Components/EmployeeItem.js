@@ -14,15 +14,22 @@ const EmployeeItem = (props) => {
         }}).then(res => {
             setLocationAssigned(res.data);
             setFoundLocation(true);
-        })
-    },[])
+        });
+    },[]);
+
+    const handleDelete = () => {
+        axios.post("http://localhost:8080/employee/delete",null,{params:{
+            id: employee.id
+        }}).then(res => console.log(res.data));
+    }
 
 
     return ( 
         <div id="employee-item">
-            <h3>Employee Name: {employee.firstName}  ID: {employee.id}</h3>
+            <h4>Employee Name: {employee.firstName}  ID: {employee.id}</h4>
             <p>Assigned to location: <b>{foundLocationAssigned && locationAssigned.location + " Location ID: " + locationAssigned.id} </b> </p>
             <p>Number of Orders completed: <b>{employee.numberOfOrders}</b>, Rating: <b>{employee.rating}</b></p>
+            <button id="employee-item-delete-btn" onClick={handleDelete}>Remove Employee</button>
         </div>
      );
 }
