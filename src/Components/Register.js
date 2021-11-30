@@ -86,7 +86,7 @@ const Register = () => {
         
         if(lastName == null || lastName == "")
         {
-            setLastNameErrorMsg("First Name cannot be Empty");
+            setLastNameErrorMsg("Last Name cannot be empty");
             return !false;
         }
         else
@@ -101,7 +101,7 @@ const Register = () => {
         
         if(firstName == null || firstName == "")
         {
-            setFirstNameErrorMsg("First Name cannot be Empty");
+            setFirstNameErrorMsg("First Name cannot be empty");
             return !false;
         }
         else
@@ -116,7 +116,7 @@ const Register = () => {
         
         if(username == null || username == "")
         {
-            setUserNameErrorMsg("First Name cannot be Empty");
+            setUserNameErrorMsg("Username cannot be empty");
             return !false;
         }
         else
