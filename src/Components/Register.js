@@ -12,6 +12,7 @@ const Register = () => {
     const [lastName,setLastName] = useState("");
     const [username,setUsername] = useState("");
     const [password,setPassword] = useState("");
+    const [confPassword,setConfPassword] = useState("");
     const [email,setEmail] = useState("");
     const [phoneNumber,setPhoneNumber] = useState("");
     const [otp,setOtp] = useState("0");
@@ -130,8 +131,13 @@ const Register = () => {
         
         if(password == null || password == "")
         {
-            setPasswordErrorMsg("First Name cannot be Empty");
+            setPasswordErrorMsg("Password cannot be empty");
             return !false;
+        }
+        else if(password != confPassword)
+        {
+            setPasswordErrorMsg("Passwords do not match");
+            return true;
         }
         else
         {
@@ -277,6 +283,11 @@ const Register = () => {
                             />
                             <label className="text-danger" htmlFor="first-name">{passwordErrorMsg}</label>
                         </div>
+                    </div>
+                    <div className="row">
+                        <label className="form-label" htmlFor="confirm-password">Confirm Password</label>
+                        <input className="form-control" id="confirm-password" placeholder="Re-Enter Password" required
+                            onChange={(e) => setConfPassword(e.target.value)} />
                     </div>
                     <br/>
                     <div className="row">
