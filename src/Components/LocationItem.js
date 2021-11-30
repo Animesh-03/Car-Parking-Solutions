@@ -19,11 +19,11 @@ const LocationItem = (props) => {
         <div id="location-item" onClick={ (e) =>{ if(props.admin == false) history.push("/location/" + loc.id,{user:user});}} >
             <h3>{loc.location} {props.admin && "ID: "+loc.id}</h3>
             <label htmlFor="location-item-dryWash">Dry Wash</label>
-            <input id="location-item-dryWash" disabled={true} type="checkbox" checked={loc.dryWashOffered} />
+            <input class="form-check-input" id="location-item-dryWash" disabled={true} type="checkbox" checked={loc.dryWashOffered} />
             <label htmlFor="location-item-carWash">Car Wash</label>
-            <input id="location-item-carWash" disabled={true} type="checkbox" checked={loc.carWashOffered} />
+            <input class="form-check-input" id="location-item-carWash" disabled={true} type="checkbox" checked={loc.carWashOffered} />
             <label htmlFor="location-item-repairs">Repairs</label>
-            <input id="location-item-repairs" disabled={true} type="checkbox" checked={loc.repairsOffered} />
+            <input class="form-check-input" id="location-item-repairs" disabled={true} type="checkbox" checked={loc.repairsOffered} />
             <br />
             {props.admin && <button id="delete-location-item-btn" onClick={handleDelete} >Delete</button>}
         </div>
