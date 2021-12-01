@@ -32,7 +32,7 @@ const EditDetails = () => {
 
     return ( 
         <div className="edit-details">
-            <h2>Fill in the empty fields or Edit </h2>
+            <h2>Add/Edit Details</h2>
             <br />
             <div id="first-name">
                 <label htmlFor="first-name-input">First Name</label>
