@@ -249,14 +249,14 @@ const Register = () => {
                     <div className="row">
                         <div className="col-6">
                             <label className="form-label" htmlFor="first-name">First Name</label>
-                            <input id="first-name" type="text" className="form-control first-name" placeholder="Last Name" required
+                            <input id="first-name" type="text" className="form-control first-name" placeholder="First Name" required
                                 value={firstName}
                                 onChange = {(e) => setFirstName(e.target.value)}
                             />
                             <label className="text-danger" htmlFor="first-name">{firstNameErrorMsg}</label>
                         </div>
                         <div className="col-6">
-                            <label className="form-label" htmlFor="last-name">First Name</label>
+                            <label className="form-label" htmlFor="last-name">Last Name</label>
                             <input id="last-name" className="form-control last-name" placeholder="Last Name" required
                                 value={lastName}
                                 onChange={(e) => setLastName(e.target.value)}
