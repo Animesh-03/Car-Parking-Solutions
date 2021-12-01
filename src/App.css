@@ -30,6 +30,16 @@ body{
   padding:10px;
  }
 
+ #login-redirect{
+  background-color: rgba(255,255,255,0);
+  border-color: rgba(255,255,255,0);
+  color: white;
+}
+
+#login-redirect:hover{
+  font-size: 1.05em;
+}
+
  .login-form{
   background-image: linear-gradient(to right,blue,rgb(111, 111, 218));
   box-shadow: 5px 4px 10px grey ;
