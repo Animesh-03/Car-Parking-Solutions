@@ -319,6 +319,7 @@ const Register = () => {
                         onClick={handleRegister}
                     >Register</button>
                 </form>
+                <button id="login-redirect" onClick={(e) => history.push("/")}>Already Registered? Sign In</button>
             </div>
         </div>
       );
