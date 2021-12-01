@@ -70,7 +70,7 @@ public class EmployeeController
     }
 
     @GetMapping(path = "getByAssignedTo")
-    public Employee getEmployeeByAssignedTo(Long id)
+    public @ResponseBody Employee getEmployeeByAssignedTo(Long id)
     {
         return employeeRepository.findByAssignedTo(id);
     }

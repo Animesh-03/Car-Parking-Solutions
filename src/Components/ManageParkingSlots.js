@@ -39,13 +39,17 @@ const ManageParkingSlots = () => {
         let parkingLoc;
         axios.get("http://localhost:8080/location/get",{params:{
             id:locationId
-        }}).then((res) => parkingLoc = res.data.location);
+        }}).then((res) => {
+            parkingLoc = res.data.location;
+            setTimeout(() => axios.post("http://localhost:8080/slots/add",null,{params:{
+                locationId:locationId,
+                locationName:parkingLoc,
+                preference:preference
+            }}),10);
 
-        setTimeout(() => axios.post("http://localhost:8080/slots/add",null,{params:{
-            locationId:locationId,
-            locationName:parkingLoc,
-            preference:preference
-        }}),10);
+        });
+
+        
     }
 
     let slotNumber = 1;

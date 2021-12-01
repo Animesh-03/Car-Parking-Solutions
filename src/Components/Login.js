@@ -41,7 +41,7 @@ const Login = () => {
                         console.log(isLoggedIn);
                         console.log(user);
                         localStorage.setItem("currentUser",JSON.stringify(user));
-                        if(user.role != "admin" && user.email == null || user.firstName == null || user.lastName == null || user.password == null || user.username == null || user.phoneNumber == null)
+                        if(user.role != "admin" && user.email == null || user.firstName == null || user.lastName == null || user.password == null || user.username == null || user.phoneNumber == null || user.carModel == null || user.carNumber == null || user.address == null || user.zipCode == null)
                         {
                             history.push("/editDetails",{user:user});
                         }
@@ -122,7 +122,7 @@ const Login = () => {
                 {
                     user = res.data;
                     console.log("User exists");
-                    if(user.email == null || user.firstName == null || user.lastName == null || user.phoneNumber == null || user.address == null || user.zipCode == null)
+                    if(user.role != "admin" && user.email == null || user.firstName == null || user.lastName == null || user.password == null || user.username == null || user.phoneNumber == null || user.carModel == null || user.carNumber == null || user.address == null || user.zipCode == null)
                     {
                         console.log("User existed with incomplete profile: " + user);
                         history.push("/editDetails",{user:user});
@@ -173,7 +173,7 @@ const Login = () => {
                 {
                     user = res.data;
                     console.log("User exists");
-                    if(user.email == null || user.firstName == null || user.lastName == null || user.phoneNumber == null || user.address == null || user.zipCode == null)
+                    if(user.role != "admin" && user.email == null || user.firstName == null || user.lastName == null || user.password == null || user.username == null || user.phoneNumber == null || user.carModel == null || user.carNumber == null || user.address == null || user.zipCode == null)
                     {
                         console.log("User existed with incomplete profile: " + user);
                         history.push("/editDetails",{user:user});
