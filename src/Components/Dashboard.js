@@ -14,8 +14,9 @@ const Dashboard = () => {
     const location = useLocation();
     const {isLoggedIn,setLoggedIn} = useContext(LoginContext);
     const tempUser = location.state.user;
-    const [user,setUser] = useState(tempUser);
-    const [userBalance,setUserBalance] = useState(user.balance);
+    const [user,setUser] = useState();
+    const [foundUser,setFoundUser] = useState(false);
+    const [userBalance,setUserBalance] = useState(0);
     
     const [balance,setBalance] = useState(0);
     
@@ -27,6 +28,15 @@ const Dashboard = () => {
     const [foundOrders,setFoundOrders] = useState(false);
 
     useEffect(() => {
+        axios.get("http://localhost:8080/users/getById",{params:{
+            id:tempUser.id
+        }}).then(res => {
+            setUser(res.data);  
+            setUserBalance(res.data.balance);          
+            setFoundUser(true);
+            
+        })
+
         axios.get("http://localhost:8080/location/all")
         .then((res) => {    
             setLocations(res.data);
@@ -34,7 +44,7 @@ const Dashboard = () => {
         });
 
         axios.get("http://localhost:8080/orders/get",{params:{
-            id:user.id
+            id:tempUser.id
         }}).then(res => {
             setOrders(res.data);
             setFoundOrders(true);
@@ -43,7 +53,7 @@ const Dashboard = () => {
 
     const addBalance = () => {
         axios.post("http://localhost:8080/users/addBalance",null,{params:{
-            id: user.id,
+            id: tempUser.id,
             amount:balance
         }}).then(res => {
             console.log(balance);
@@ -58,10 +68,10 @@ const Dashboard = () => {
     
     return (
         <div id="dashboard">
-            <p>Current Balance: {userBalance}</p>
+            <p>Current Balance: { foundUser && userBalance}</p>
             <button id="edit-details" onClick={editDetails}>Edit Details </button>
             <div className="container-fluid">
-                <h1>Hello, {user.firstName}</h1>
+                <h1>Hello, {foundUser && user.firstName}</h1>
                 <h2>All Locations </h2>
                 <ul id="all-locations">{foundLocations && (locations.map((loc) => <LocationItem location={JSON.stringify(loc)} user={JSON.stringify(user)} admin={false} />))}</ul>
                 <h2>Your Orders</h2>
