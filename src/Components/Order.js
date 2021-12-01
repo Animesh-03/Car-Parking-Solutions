@@ -56,7 +56,9 @@ const Order = () => {
 
 
                     
-                });
+                }).catch((e) => {
+                    history.goBack();
+                })
                 
             }
         });
