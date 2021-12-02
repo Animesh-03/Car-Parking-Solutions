@@ -13,8 +13,9 @@ const Order = () => {
     const [employeeFound,setEmployeeFound] = useState(false);
     const [employeeId,setEmployeeId] = useState();
 
+    const [loc,setLoc] = useState();
+    const [foundLoc,setFoundLoc] = useState(false);
 
-    console.log(location);
 
     useEffect(() => {
         axios.get("http://localhost:8080/employee/getByAssignedTo",{params:{
@@ -25,6 +26,13 @@ const Order = () => {
             setEmployeeId(res.data.id);
             console.log(res.data);
         });
+
+        axios.get("http://localhost:8080/location/get",{params:{
+            id:order.locationId,
+        }}).then(res => {
+            setLoc(res.data);
+            setFoundLoc(true);
+        })
     },[])
 
 
@@ -66,10 +74,10 @@ const Order = () => {
 
     return ( 
         <div className="order">
-            <div id="employee-assigned">
-                <h2>Your Booking is assigned to: {employeeFound && employee.firstName}</h2>
-            </div>
-            {JSON.stringify(order)}
+            <h2>You booked a slot for: <b>{foundLoc && loc.location}</b></h2>
+            <p>Your booking reference ID: <b>{order.referenceId}</b></p>
+            <p>Your Booking is assigned to: <b>{employeeFound && employee.firstName}</b> with a current rating of: <b>{employeeFound && employee.rating}</b></p>
+            <p>Your check in time: <b>{order.checkInTime}</b>, Your check out time: <b>{order.checkOutTime}</b></p>
             <br />
             <p>You need to pay: {order.amount} </p>
             <button id="checkout" onClick={checkout}>Checkout</button>

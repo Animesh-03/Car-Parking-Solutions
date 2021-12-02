@@ -87,26 +87,33 @@ const BookSlot = () => {
         {
             var chkInTime = checkInTime.split(':');
             var chkOutTime = checkOutTime.split(':');
-            console.log("Check In Time : "+chkInTime[0] + ":" + chkInTime[1]);
-            console.log("Slot id:" + slotId);
-            axios.post("http://localhost:8080/orders/new",null,{params:{
-                locationId: slot.locationId,
-                bookedBy:userId,
-                slotId:slotid,
-                wantDryWash:dryWash,
-                wantCarWash:carWash,
-                wantRepairs:repairs,
-                checkInTime:checkInTime,
-                checkOutTime:checkOutTime,
-                bookingDate:bookingDate,
-                amount:calculatePayment(chkInTime,chkOutTime),
-            }}).then(res => {
-                console.log(res);
+            if(chkOutTime[0] - chkInTime[0] < 0)
+            {
+                alert("You cannot check out before you check in. Please enter a valid check in and check out times");
+            }
+            else
+            {
+                console.log("Check In Time : "+chkInTime[0] + ":" + chkInTime[1]);
+                console.log("Slot id:" + slotId);
+                axios.post("http://localhost:8080/orders/new",null,{params:{
+                    locationId: slot.locationId,
+                    bookedBy:userId,
+                    slotId:slotid,
+                    wantDryWash:dryWash,
+                    wantCarWash:carWash,
+                    wantRepairs:repairs,
+                    checkInTime:checkInTime,
+                    checkOutTime:checkOutTime,
+                    bookingDate:bookingDate,
+                    amount:calculatePayment(chkInTime,chkOutTime),
+                }}).then(res => {
+                    console.log(res);
 
-                axios.post("http://localhost:8080/slots/setBooked", null, {params:{
-                    id:slotId
-                }}).then(res => history.push("/dashboard",{user:user}));
-            });
+                    axios.post("http://localhost:8080/slots/setBooked", null, {params:{
+                        id:slotId
+                    }}).then(res => history.push("/dashboard",{user:user}));
+                });
+            }
         }
 
 
