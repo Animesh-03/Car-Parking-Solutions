@@ -40,7 +40,7 @@ const Dashboard = () => {
         axios.get("http://localhost:8080/location/all")
         .then((res) => {    
             setLocations(res.data);
-            setFoundLocations(true);
+            setTimeout(() => setFoundLocations(true),50);
         });
 
         axios.get("http://localhost:8080/orders/get",{params:{
