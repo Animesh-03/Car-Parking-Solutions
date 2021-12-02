@@ -70,7 +70,7 @@ const ManageParkingSlots = () => {
 
             <h2>Manage Slots</h2>
             <input id="slot-locationId" placeholder="Location ID" onChange={(e) => setLocationId(e.target.value)} />
-                <select onChange={(e) => {setPreference(e.target.value); console.log(e.target.value)}}>
+                <select defaultValue={PreferenceList.list[1]} onChange={(e) => {setPreference(e.target.value); console.log(e.target.value)}}>
                     {PreferenceList.list.map((pref) => <option value={pref}>{pref}</option>)}
                 </select>
             <button onClick={postSlot} >Post Slot </button>

@@ -83,8 +83,7 @@ const EditDetails = () => {
             <br />
             <div id="car-model">
                 <label htmlFor="car-model-input" >Car Model </label>
-                {/* <input id="car-model-input" placeholder="Car Model" defaultValue={user.carModel} onChange={e => user.carModel=e.target.value} /> */}
-                <select onChange={(e) => {user.carModel = e.target.value}}>
+                <select defaultValue={(user.carModel == null) ? PreferenceList.list[0] : user.carModel} onChange={(e) => {user.carModel = e.target.value}}>
                     {PreferenceList.list.map((pref) => <option value={pref}>{pref}</option>)}
                 </select>
             </div>
