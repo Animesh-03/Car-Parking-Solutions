@@ -35,10 +35,7 @@ const Login = () => {
                     setLoggedIn(true);
                     setUser(user);
                     setTimeout(_ => {
-                        console.log(isLoggedIn);
-                        console.log(user);
-                        localStorage.setItem("currentUser",JSON.stringify(user));
-                        if(user.role != "admin" && user.email == null || user.firstName == null || user.lastName == null || user.password == null || user.username == null || user.phoneNumber == null || user.carModel == null || user.carNumber == null || user.address == null || user.zipCode == null)
+                        if(user.role != "admin" && (user.email == null || user.firstName == null || user.lastName == null || user.password == null || user.username == null || user.phoneNumber == null || user.carModel == null || user.carNumber == null || user.address == null || user.zipCode == null))
                         {
                             history.push("/editDetails",{user:user});
                         }
