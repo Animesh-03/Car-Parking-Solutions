@@ -68,6 +68,7 @@ const Dashboard = () => {
     
     return (
         <div id="dashboard">
+            <button id="logout-btn" onClick={() => history.push("/")}>Logout</button>
             <p>Current Balance: { foundUser && userBalance}</p>
             <button id="edit-details" onClick={editDetails}>Edit Details </button>
             <div className="container-fluid">
