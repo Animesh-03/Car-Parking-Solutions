@@ -15,10 +15,7 @@ const Login = () => {
     const {user,setUser} = useContext(UserContext);
     const {isLoggedIn,setLoggedIn} = useContext(LoginContext);
 
-    const history = useHistory();
-
-    // console.log("initial: " + isLoggedIn);
-    
+    const history = useHistory();    
 
     const HandleSignIn = (e) => {
         e.preventDefault();

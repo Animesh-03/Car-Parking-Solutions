@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.util.UUID;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +13,7 @@ public class Order
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
+    private String referenceId;
     private Long locationId;
     private Long bookedBy;
     private Long slotId;
@@ -35,6 +38,7 @@ public class Order
         this.amount = amount;
         this.checkedOut = false;
         this.bookingDate = bookingDate;
+        this.referenceId = UUID.randomUUID().toString();
     }
 
     public Order()
@@ -78,6 +82,9 @@ public class Order
     public String getBookingDate() {
         return bookingDate;
     }
+    public String getReferenceId() {
+        return referenceId;
+    }
     public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
@@ -114,6 +121,9 @@ public class Order
     }
     public void setBookingDate(String bookingDate) {
         this.bookingDate = bookingDate;
+    }
+    public void setReferenceId(String referenceId) {
+        this.referenceId = referenceId;
     }
 }
 

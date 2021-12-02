@@ -11,22 +11,44 @@ const EditDetails = () => {
     const [preference,setPreference] = useState();
 
     const editDetails = () => {
-        axios.post("http://localhost:8080/users/update",null,{params:{
-            id:user.id,
-            carModel:user.carModel,
-            carNumber: user.carNumber,
-            firstName:user.firstName,
-            lastName:user.lastName,
-            phoneNumber:user.phoneNumber,
-            address:user.address,
-            zipCode:user.zipCode
-        }}).then(res => {
-            console.log(res.data);
-            if(res.data == "Saved")
-            {
-                history.push("/dashboard",{user:user});
-            }
-        })
+
+        const mobileNumberPattern = /[0-9]{10}/;
+        const zipCodePattern = /[0-9]{6}/;
+        const numberPlatePattern = /[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}/;
+
+        if(!mobileNumberPattern.test(user.phoneNumber))
+        {
+            alert("Please enter a valid mobile number");
+        }
+        else if(!zipCodePattern.test(user.zipCode))
+        {
+            alert("Please enter a valid zip code");
+        }
+        else if(!numberPlatePattern.test(user.carNumber))
+        {
+            alert("Please enter a valid number plate");
+        }
+        else
+        {
+            axios.post("http://localhost:8080/users/update",null,{params:{
+                id:user.id,
+                carModel:user.carModel,
+                carNumber: user.carNumber,
+                firstName:user.firstName,
+                lastName:user.lastName,
+                phoneNumber:user.phoneNumber,
+                address:user.address,
+                zipCode:user.zipCode
+            }}).then(res => {
+                console.log(res.data);
+                if(res.data == "Saved")
+                {
+                    history.push("/dashboard",{user:user});
+                }
+            });
+        }
+
+        
     }
 
 
