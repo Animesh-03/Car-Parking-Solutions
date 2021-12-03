@@ -74,6 +74,53 @@ body{
   margin-top: 20px;
  }
 
+ .slots-in-location{
+  background-image: linear-gradient(to right,blue,rgb(111, 111, 218));
+  box-shadow: 5px 4px 10px grey ;
+  padding:10px;
+  max-width: 600px;
+  border-radius: 10px;
+  margin:auto;
+  padding: 50px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  text-align: center;
+ }
+
+ .slots-in-location ul{
+   padding-left: 0;
+ }
+
+ .slots-in-location h2{
+  background: rgba(50,50,50,0.2);
+  border-radius: 6px;
+  
+  font-family:Arial, Helvetica, sans-serif;
+  padding: 4px;
+ }
+
+ .slots-in-location #slot-item{
+  background-color: #f0f6f7;
+  padding: 40px;
+  border-radius: 25px;
+  margin: auto;
+  margin-right: 50px;
+  margin-left: 50px;
+  margin-top: 30px;
+ }
+
+ .slots-in-location #slot-item:hover{
+  background-color: #ffffff;
+  border-style: dashed;
+  border-color:rgba(255, 31, 23, 0.685);
+  border-width: 2px;
+ }
+ 
+
+
+ .slots-in-location #slot-item p{
+   margin-top: 10px;
+ }
  .admin{
   background-image: linear-gradient(to right,blue,rgb(111, 111, 218));
   box-shadow: 5px 4px 10px grey ;
@@ -85,9 +132,25 @@ body{
   margin-top: 20px;
  }
 
- .admin-dash{
-   min-height:200px ;
+ .admin .admin-dash{
+   min-height: 200px;
  }
+
+.admin #order-item{
+  background-color: #f0f6f7;
+  padding: 20px;
+  border-radius: 25px;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 30px;
+}
+
+.admin #order-item h3{
+  font-size: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: oblique;
+  font-weight: bold;
+}
 
 .admin h1{
   padding:20px;
@@ -318,7 +381,7 @@ body{
 #location-item:hover{
   background-color: #ffffff;
   border-style: dashed;
-  border-color:crimson;
+  border-color:rgba(255, 31, 23, 0.685);
   border-width: 2px;
 }
 
