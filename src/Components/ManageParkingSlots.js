@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import LocationItem from "./LocationItem";
 import SlotItem from "./SlotItem";
-import PreferenceList from "./PreferenceList";
+import PreferenceList from "../Others/PreferenceList";
 
 const ManageParkingSlots = () => {
 
@@ -11,7 +11,7 @@ const ManageParkingSlots = () => {
     const [carWash,setCarWash] = useState(false);
     const [repairs,setRepairs] = useState(false);
 
-    const [preference,setPreference] = useState();
+    const [preference,setPreference] = useState(PreferenceList.list[1]);
 
     const [locationId,setLocationId] = useState();
 

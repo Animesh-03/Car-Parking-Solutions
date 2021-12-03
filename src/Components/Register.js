@@ -228,6 +228,7 @@ const Register = () => {
             }).catch((error) => {
                 console.log(error);
                 console.log("OTP Incorrect");
+                alert("Incorrect OTP");
                 window.recaptchaVerifier.clear();
                 bool = false;
             })

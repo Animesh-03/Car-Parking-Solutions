@@ -30,13 +30,13 @@ public class OrderController
     }
 
     @PostMapping(path = "/new")
-    public @ResponseBody String addNewOrder(@RequestParam Long locationId,@RequestParam Long bookedBy,@RequestParam Long slotId,@RequestParam boolean wantDryWash,@RequestParam boolean wantCarWash,@RequestParam boolean wantRepairs,@RequestParam String checkInTime,@RequestParam String checkOutTime,@RequestParam Long amount, @RequestParam String bookingDate)
+    public @ResponseBody Order addNewOrder(@RequestParam Long locationId,@RequestParam Long bookedBy,@RequestParam Long slotId,@RequestParam boolean wantDryWash,@RequestParam boolean wantCarWash,@RequestParam boolean wantRepairs,@RequestParam String checkInTime,@RequestParam String checkOutTime,@RequestParam Long amount, @RequestParam String bookingDate)
     {
         Order o = new Order(locationId, bookedBy, slotId, wantDryWash, wantCarWash, wantRepairs, checkInTime, checkOutTime, amount, bookingDate);
         o.setSlotId(slotId);
         orderRepository.save(o);
 
-        return "Saved";
+        return o;
     }
 
     @PostMapping(path = "/finalise")

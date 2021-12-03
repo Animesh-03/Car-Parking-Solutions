@@ -4,6 +4,7 @@ import { useHistory, useLocation, useParams } from "react-router";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { LoginContext } from "./LoginContext";
 import { UserContext } from "./UserContext";
+import sendConfirmationMail from "../Others/MessagingService";
 
 
 const BookSlot = () => {
@@ -107,7 +108,7 @@ const BookSlot = () => {
                     bookingDate:bookingDate,
                     amount:calculatePayment(chkInTime,chkOutTime),
                 }}).then(res => {
-                    console.log(res);
+                    sendConfirmationMail(user,res.data);
 
                     axios.post("http://localhost:8080/slots/setBooked", null, {params:{
                         id:slotId
