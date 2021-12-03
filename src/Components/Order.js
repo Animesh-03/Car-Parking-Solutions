@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router";
+import MessagingService from "../Others/MessagingService";
 
 const Order = () => {
     const location = useLocation().state;
@@ -61,6 +62,8 @@ const Order = () => {
                             id:order.slotId
                         }}).then(res => history.goBack());
                     });
+
+                    MessagingService.sendCheckoutMail(user,order);
 
 
                     
