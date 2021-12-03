@@ -52,7 +52,11 @@ const Order = () => {
                 axios.post("http://localhost:8080/orders/finalise",null,{params:{
                     id:order.orderId
                 }}).then(res => {
-                    let rating = prompt("Enter your rating (1-5) for the employee");
+                    let rating = -1;
+                    while(rating <= 0 || rating > 5)
+                    {
+                        rating = prompt("Enter your rating (1-5) for the employee");
+                    }
                     console.log(rating);
                     axios.post("http://localhost:8080/employee/addRating",null,{params:{
                         id:employeeId,
