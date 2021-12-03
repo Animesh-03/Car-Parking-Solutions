@@ -1,8 +1,7 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router";
 import SlotItem from "./SlotItem";
-import { UserContext } from "./UserContext";
 
 const EmployeeDashboard = () => {
 

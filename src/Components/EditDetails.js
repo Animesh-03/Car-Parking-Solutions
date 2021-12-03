@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useState } from "react";
 import { useHistory, useLocation } from "react-router";
 import PreferenceList from "../Others/PreferenceList";
 
@@ -7,8 +6,6 @@ const EditDetails = () => {
     const location = useLocation().state;
     const history = useHistory();
     const user = location.user;
-
-    const [preference,setPreference] = useState();
 
     const editDetails = () => {
 

@@ -1,17 +1,12 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory, useLocation, useParams } from "react-router";
-import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
-import { LoginContext } from "./LoginContext";
-import { UserContext } from "./UserContext";
 import MessagingService from "../Others/MessagingService";
 
 
 const BookSlot = () => {
     const params = useParams();
     const location = useLocation();
-    const {isLoggedIn,setLoggedIn} = useContext(LoginContext);
-    // const {user,setUser} = useContext(UserContext);
     const user = location.state.user;
     const history = useHistory();
 
@@ -29,7 +24,7 @@ const BookSlot = () => {
     const [locFound,setLocFound] = useState(false);
     
     let [slot,setSlot] = useState();
-    const [slotid,setSlotid] = useState(slotId);
+    const slotid = slotId;
     
     useEffect(_ => {
         axios.get("http://localhost:8080/slots/get",{params:{

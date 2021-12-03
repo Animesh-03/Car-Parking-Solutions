@@ -4,10 +4,6 @@ import Register from './Components/Register';
 import {Switch,Route, BrowserRouter as Router} from 'react-router-dom';
 import Dashboard from './Components/Dashboard';
 import BookSlot from './Components/BookSlot';
-import { useState } from 'react';
-import { LoginContext } from './Components/LoginContext';
-import {PrivateRoute} from './Components/PrivateRoute';
-import {UserContext} from './Components/UserContext'
 import AdminDashboard from './Components/AdminDashboard';
 import EmployeeDashboard from './Components/EmployeeDashboard';
 import EmployeeLogin from './Components/EmployeeLogin';
@@ -17,12 +13,10 @@ import EditDetails from './Components/EditDetails';
 
 
 function App() {
-  const [isLoggedIn,setLoggedIn] = useState();
-  const [user,setUser] = useState(JSON.parse(localStorage.getItem("currentUser")));
+
   
   return (
-      <LoginContext.Provider value={{isLoggedIn,setLoggedIn}}>
-        <UserContext.Provider value = {{user,setUser}}>
+
           <div className="App">
             <Router>
             <Switch>
@@ -71,8 +65,7 @@ function App() {
               </Switch>   
             </Router>     
           </div>
-        </UserContext.Provider>
-      </LoginContext.Provider>
+
   );
 }
 

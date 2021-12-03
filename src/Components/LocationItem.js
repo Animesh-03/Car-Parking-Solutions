@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useHistory, useLocation, useParams } from "react-router";
+import { useHistory } from "react-router";
 
 const LocationItem = (props) => {
     const history = useHistory();

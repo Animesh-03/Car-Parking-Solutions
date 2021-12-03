@@ -1,25 +1,22 @@
 import axios from "axios";
-import { useContext, useEffect, useRef, useState } from "react";
-import { renderIntoDocument } from "react-dom/test-utils";
-import { Link, useLocation, useParams, Router } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import LocationItem from "./LocationItem";
-import { LoginContext } from "./LoginContext";
 import OrderItem from "./OrderItem";
-import { UserContext } from "./UserContext";
 
 
 const Dashboard = () => {
     const history = useHistory();
     const location = useLocation();
-    const {isLoggedIn,setLoggedIn} = useContext(LoginContext);
+
     const tempUser = location.state.user;
     const [user,setUser] = useState();
     const [foundUser,setFoundUser] = useState(false);
+
     const [userBalance,setUserBalance] = useState(0);
     
     const [balance,setBalance] = useState(0);
-    
 
     const [locations,setLocations] = useState();  
     const [foundLocations,setFoundLocations] = useState(false); 
@@ -74,10 +71,9 @@ const Dashboard = () => {
             <div className="container-fluid">
                 <h1>Hello, {foundUser && user.firstName}</h1>
                 <h2>All Locations </h2>
-                <ul id="all-locations">{foundLocations && (locations.map((loc) => <LocationItem location={JSON.stringify(loc)} user={JSON.stringify(user)} admin={false} />))}</ul>
+                <div id="all-locations">{foundLocations && (locations.map((loc) => <LocationItem location={JSON.stringify(loc)} user={JSON.stringify(user)} admin={false} />))}</div>
                 <h2>Your Orders</h2>
-                {/* <p>{JSON.stringify(orders)}</p> */}
-                <ul id="order-list">{foundOrders && (orders.map((o) => <OrderItem order={o} user={user} admin={false} />))}</ul>
+                <div id="order-list">{foundOrders && (orders.map((o) => <OrderItem order={o} user={user} admin={false} />))}</div>
                 <h2>Add Balance</h2>
                 <input id="add-balance" placeholder="Add amount to Wallet" onChange={e => setBalance(e.target.value)} />
                 <button id="add-balance-btn" onClick={addBalance}>Add to Wallet</button>

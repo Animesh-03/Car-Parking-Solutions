@@ -1,14 +1,12 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { useHistory, useLocation, useParams } from "react-router";
-import { UserContext } from "./UserContext";
+import { useLocation, useParams } from "react-router";
 import SlotItem from "./SlotItem";
 
 
 const SlotsInLocation = () => {
 
     const params = useParams();
-    const history = useHistory();
     const location = useLocation();
 
     const [slots,setSlots] = useState();

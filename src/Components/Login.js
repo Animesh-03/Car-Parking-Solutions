@@ -1,19 +1,14 @@
-import './CSS/login.css'
-import { useContext, useState } from 'react';
-import axios from 'axios'
+import './CSS/login.css';
+import { useState } from 'react';
+import axios from 'axios';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-
 import firebase from '../Others/firebase';
-import { LoginContext } from './LoginContext';
-import { UserContext } from './UserContext';
-import {getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider} from 'firebase/auth'
+import {getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider} from 'firebase/auth';
 
 const Login = () => {
 
     const [username,setUsername] = useState("");
     const [password,setPassword] = useState("");
-    const {user,setUser} = useContext(UserContext);
-    const {isLoggedIn,setLoggedIn} = useContext(LoginContext);
 
     const history = useHistory();    
 
@@ -32,8 +27,6 @@ const Login = () => {
                 if(user.password == password)
                 {
                     console.log("Found User");
-                    setLoggedIn(true);
-                    setUser(user);
                     setTimeout(_ => {
                         if(user.role != "admin" && (user.email == null || user.firstName == null || user.lastName == null || user.password == null || user.username == null || user.phoneNumber == null || user.carModel == null || user.carNumber == null || user.address == null || user.zipCode == null))
                         {
@@ -116,7 +109,7 @@ const Login = () => {
                 {
                     user = res.data;
                     console.log("User exists");
-                    if(user.role != "admin" && user.email == null || user.firstName == null || user.lastName == null || user.password == null || user.username == null || user.phoneNumber == null || user.carModel == null || user.carNumber == null || user.address == null || user.zipCode == null)
+                    if(user.role != "admin" && (user.email == null || user.firstName == null || user.lastName == null || user.password == null || user.username == null || user.phoneNumber == null || user.carModel == null || user.carNumber == null || user.address == null || user.zipCode == null))
                     {
                         console.log("User existed with incomplete profile: " + user);
                         history.push("/editDetails",{user:user});
@@ -167,7 +160,7 @@ const Login = () => {
                 {
                     user = res.data;
                     console.log("User exists");
-                    if(user.role != "admin" && user.email == null || user.firstName == null || user.lastName == null || user.password == null || user.username == null || user.phoneNumber == null || user.carModel == null || user.carNumber == null || user.address == null || user.zipCode == null)
+                    if(user.role != "admin" && (user.email == null || user.firstName == null || user.lastName == null || user.password == null || user.username == null || user.phoneNumber == null || user.carModel == null || user.carNumber == null || user.address == null || user.zipCode == null))
                     {
                         console.log("User existed with incomplete profile: " + user);
                         history.push("/editDetails",{user:user});
