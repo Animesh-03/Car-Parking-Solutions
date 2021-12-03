@@ -27,7 +27,7 @@ const OrderItem = (props) => {
             <h3>{foundLocationName && locationName}</h3>
             <p>Reference ID: {order.referenceId}</p>
             <p>Booking For: {order.bookingDate} </p>
-            <p>Check In Time: {order.checkInTime}, Check Out Time:{order.checkOutTime}</p>
+            <p>Check In Time: {order.checkInTime}, Check Out Time: {order.checkOutTime}</p>
             <p>Payment Amount: {order.amount}</p>
         </div>
      );
