@@ -392,6 +392,67 @@ body{
   margin-left: 3px;
 }
 
+.other-container-fluid{
+  background-image: linear-gradient(to right,blue,rgb(111, 111, 218));
+  box-shadow: 5px 4px 10px grey ;
+  padding:40px;
+  max-width: 600px;
+  border-radius: 10px;
+  margin:auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+
+.other-container-fluid label{
+  font-size: large;background: rgba(50,50,50,0.3);
+  border-radius: 6px;
+  
+  font-family:Arial, Helvetica, sans-serif;
+  padding: 6px;
+  color: beige;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.other-container-fluid #carWash-chkbox{
+  margin-left: 50px;
+}
+
+.other-container-fluid #dryWash-label{
+  background:none;
+  color: #212529;
+}
+
+.other-container-fluid #carWash-label{
+  background:none;
+  color: #212529;
+}
+.other-container-fluid input:not([type="checkbox"]){
+  display: inline;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.25rem;
+  margin-left: 10px;
+  flex:1;
+  margin-right: 70px;
+}
+
+.other-container-fluid h1{
+  background: rgba(50,50,50,0.2);
+  border-radius: 3px;
+  
+  font-family:Arial, Helvetica, sans-serif;
+  padding: 6px;
+}
 #location-item{
   background-color: #f0f6f7;
   padding: 50px;
