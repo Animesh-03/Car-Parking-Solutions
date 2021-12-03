@@ -66,7 +66,7 @@ const Dashboard = () => {
     return (
         <div id="dashboard">
             <button id="logout-btn" onClick={() => history.push("/")}>Logout</button>
-            <p id = "payment-p-green">Current Balance: { foundUser && userBalance}</p>
+            <p id = "payment-p-green">Current Balance: Rs. { foundUser && userBalance}</p>
             <button id="edit-details" onClick={editDetails}>Edit Details </button>
             <div className="container-fluid">
                 <h1>Hello, {foundUser && user.firstName}</h1>
@@ -75,7 +75,7 @@ const Dashboard = () => {
                 <h2>Your Orders</h2>
                 <div id="order-list">{foundOrders && (orders.map((o) => <OrderItem order={o} user={user} admin={false} />))}</div>
                 <h2>Add Balance</h2>
-                <input id="add-balance" placeholder="Add amount to Wallet" onChange={e => setBalance(e.target.value)} />
+                <input id="add-balance" placeholder="Enter Amount in Rupees" onChange={e => setBalance(e.target.value)} />
                 <button id="add-balance-btn" onClick={addBalance}>Add to Wallet</button>
             </div>
         </div>
