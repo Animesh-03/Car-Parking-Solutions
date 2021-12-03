@@ -54,7 +54,7 @@ const Login = () => {
                 else
                 {
                     console.log("Password mis-match");
-                    alert("Incorrect username or password password");
+                    alert("Incorrect username or password");
                 }
             }
             else
