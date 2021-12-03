@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import LocationItem from "./LocationItem";
 import SlotItem from "./SlotItem";
-import PreferenceList from "../Others/PreferenceList";
+import PreferenceList from "./PreferenceList";
 
 const ManageParkingSlots = () => {
 
@@ -11,7 +11,7 @@ const ManageParkingSlots = () => {
     const [carWash,setCarWash] = useState(false);
     const [repairs,setRepairs] = useState(false);
 
-    const [preference,setPreference] = useState(PreferenceList.list[1]);
+    const [preference,setPreference] = useState();
 
     const [locationId,setLocationId] = useState();
 
@@ -57,6 +57,7 @@ const ManageParkingSlots = () => {
         <div className="ManageParkingSlots">
             <h2>Manage Parking Slots</h2>
             <h2> Manage Location </h2>
+            <div id = "unique_enclosure">
             <input id="parking-location" placeholder="Location" onChange={(e) => setLocation(e.target.value)} />
             <input type="checkbox" id="dryWash-chkbox" onChange={(e) => setDryWash(e.target.value)} />
             <label htmlFor="dryWash-chkbox">Request Dry Wash</label>
@@ -65,15 +66,18 @@ const ManageParkingSlots = () => {
             <input type="checkbox" id="repairs-chkbox" onChange={(e) => setRepairs(e.target.value)} />
             <label htmlFor="repairs-chkbox">Request Repairs</label>
             <button onClick={postLocation}>Post</button>
+            </div>
             <h3>All Locations</h3>
             <ul id="all-admin-locations">{foundSpaces && (spaces.map((loc) => <LocationItem location={JSON.stringify(loc)} user={null} admin={true} />))}</ul>
 
             <h2>Manage Slots</h2>
+            <div id="manage_slot_unique_div">
             <input id="slot-locationId" placeholder="Location ID" onChange={(e) => setLocationId(e.target.value)} />
                 <select defaultValue={PreferenceList.list[1]} onChange={(e) => {setPreference(e.target.value); console.log(e.target.value)}}>
                     {PreferenceList.list.map((pref) => <option value={pref}>{pref}</option>)}
                 </select>
             <button onClick={postSlot} >Post Slot </button>
+            </div>
             <h3>All Slots</h3>
             <ul>{foundSlots && (slots.map((o) => <SlotItem slot={o} user={null} admin={true} slotNumber={slotNumber++}  />))}</ul>
         </div>
