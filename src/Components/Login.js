@@ -197,7 +197,7 @@ const Login = () => {
 
                     <label htmlFor="password">Password</label>
                     <input 
-                        id="password" className="form-control" placeholder="Enter Password" autoComplete="off"
+                        id="password" className="form-control" placeholder="Enter Password" type="password" autoComplete="off"
                         value={password}
                         onChange= {(e) => {setPassword(e.target.value);}}
                     />

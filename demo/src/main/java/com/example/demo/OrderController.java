@@ -39,6 +39,12 @@ public class OrderController
         return o;
     }
 
+    @GetMapping(path = "/getInLocation")
+    public @ResponseBody Iterable<Order> getOrdersInLocation(Long id)
+    {
+        return orderRepository.findByAssignedToEmployee(id);
+    }
+
     @PostMapping(path = "/finalise")
     public @ResponseBody String completeOrder(Long id)
     {

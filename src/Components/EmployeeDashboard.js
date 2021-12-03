@@ -13,7 +13,7 @@ const EmployeeDashboard = () => {
     const [foundSlots,setFoundSlots] = useState(false);
 
     useEffect(() => {
-        axios.get("http://localhost:8080/slots/getByLocation",{params:{
+        axios.get("http://localhost:8080/orders/getInLocation",{params:{
             id:emp.assignedTo
         }}).then((res) => {
             setSlots(res.data);
@@ -30,7 +30,7 @@ const EmployeeDashboard = () => {
             <p>Your Rating: {emp.rating}</p>
             <p>Number of orders completed: {emp.numberOfOrders}</p>
             <div id="assigned-slots">
-            {foundSlots && (slots.map((slt) => <SlotItem slot={slt} user={null} admin={true} slotNumber={slotNumber++}  />))}
+            {foundSlots && (slots.map((slt) => <SlotItem slot={slt} user={null} admin={false} slotNumber={slotNumber++}  />))}
             </div>
         </div>
      );
