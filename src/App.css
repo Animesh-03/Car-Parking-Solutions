@@ -1,3 +1,7 @@
+/*
+author@vibhu
+*/
+
 .App {
   text-align: center;
 }
@@ -443,6 +447,11 @@ body{
   color: #212529;
 }
 
+.other-container-fluid #repairs-label{
+  background:none;
+  color: #212529;
+}
+
 .other-container-fluid #carWash-label{
   background:none;
   color: #212529;
@@ -771,18 +780,54 @@ form.form-control{
     margin-left: 10px;
 }
 
+.order{
+  background-image: linear-gradient(to right,blue,rgb(111, 111, 218));
+  box-shadow: 5px 4px 10px grey ;
+  padding:10px;
+  max-width: 600px;
+  border-radius: 10px;
+  margin:auto;
+  text-align: center;
+  margin-top: 20px;
+  padding-bottom: 30px;
+}
 
+.order p{
+  color: white;
+  font-style: italic;
+}
 
+.order h2{
+  background: rgba(50,50,50,0.2);
+  border-radius: 6px;
+  
+  font-family:Arial, Helvetica, sans-serif;
+  padding: 4px;
+  margin-bottom: 40px;
+}
 
-
-
-
-
-
-
-
-
-
+.order button{
+  color: #fff;
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  margin-bottom: 10px;
+  display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    margin-top: 20px;
+}
 
 
 
