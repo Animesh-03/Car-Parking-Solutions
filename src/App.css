@@ -325,7 +325,7 @@ body{
   margin-top: 10px;
 }
 
-#dashboard p{
+#dashboard #payment-p-green{
   text-align: right;
   margin-top: 30px;
   padding-right: 30px;
@@ -333,6 +333,26 @@ body{
   color: greenyellow;
   font-weight: bold;
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+#dashboard #order-item{
+  background-color: #f0f6f7;
+  padding: 30px;
+  border-radius: 25px;
+  margin-left: 80px;
+  margin-right: 80px;
+  margin-top: 30px;
+}
+
+#dashboard #order-item:hover{
+  background-color: #ffffff;
+  border-style: dashed;
+  border-color:rgba(255, 31, 23, 0.685);
+  border-width: 2px;
+}
+
+#dashboard #order-item h3{
+  margin-bottom: 20px;
 }
 
 #edit-details{
