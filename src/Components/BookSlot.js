@@ -117,8 +117,8 @@ const BookSlot = () => {
     }
 
     return ( 
-        <div className="container-fluid">
-            <p>{JSON.stringify(slot)}</p>
+        <div className="other-container-fluid">
+            <h1>Slot Booking</h1>
             <label htmlFor="booking-date">Booking Date </label>
             <input id="booking-date" placeholder="DD-MM-YY"
             onChange={(e) => setBookingDate(e.target.value)} />
