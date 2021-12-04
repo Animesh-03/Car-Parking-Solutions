@@ -13,7 +13,7 @@ const AdminDash = () => {
 
     return (
         <div className="admin-dash">
-            <ul id="order-admin-list">{foundOrders && (orders.map((o) => <OrderItem order={o} user={null} admin={true} />))}</ul>
+            <ul id="order-admin-list">{foundOrders && (orders.map((o) => <OrderItem order={o} user={null} admin={true} emp={false} />))}</ul>
         </div>
     );
 }

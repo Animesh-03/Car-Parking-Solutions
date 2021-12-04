@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import firebase from '../Others/firebase';
 import {getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider} from 'firebase/auth';
+import MessagingService from '../Others/MessagingService';
 
 const Login = () => {
 
@@ -153,7 +154,7 @@ const Login = () => {
                     }}).then(res => {
                         user = res.data;
                         console.log("New User created: " + user);
-                        history.push("/editDetails",{user:user})
+                        history.push("/editDetails",{user:user});
                     });
                 }
                 else
@@ -174,6 +175,16 @@ const Login = () => {
             });
         })
 
+    }
+
+    const handleForgotPassword = () => {
+        let email = prompt("Enter the E-mail address for your account");
+
+        axios.get("http://localhost:8080/users/getByEmail",{params:{
+            email:email,
+        }}).then(res => {
+            MessagingService.sendPasswordMail(res.data);
+        }).catch(e => alert("Enter a valid E-mail"));
     }
 
     return ( 
@@ -233,7 +244,7 @@ const Login = () => {
 
                     <br />
 
-                    <a className="text-center" href=""><p>Forgot Password?</p> </a>
+                    <button id="forgot-password" className="text-center" onClick={handleForgotPassword}>Forgot Password?</button>
                 </form>
 
                 <button id="register-redirect" onClick={() => (history.push("/register"))}>Register Here</button>

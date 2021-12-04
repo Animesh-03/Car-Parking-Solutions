@@ -26,6 +26,19 @@ class MessagingService
         }}).then(res => console.log(res.data));
     
     }
+
+    static sendPasswordMail = (user) => {
+        let message = "Hello " + user.firstName + "\nYour password is: " + user.password;
+        let to = user.email;
+        let subject = "Password for Car Parking Solutions";
+
+        axios.get("http://localhost:8080/sendMail/send",{params:{
+            to:to,
+            sub:subject,
+            body:message
+        }}).then(res => console.log(res.data));
+
+    }
 }
 
 export default MessagingService;
