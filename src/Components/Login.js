@@ -192,8 +192,8 @@ const Login = () => {
             <div className="login-form">
                 <form id="login-form" className="form-control">
                     <div className="logo">
-                        <img width="150px" height="150px" />
-                        <h2 className="logo-name">Project Name</h2>
+                        <img  height="150px" src = "./icons/logo.png"/>
+                        <h2 className="logo-name">Login</h2>
                     </div>
                 
                 
