@@ -159,6 +159,14 @@ body{
   margin-top: 30px;
 }
 
+#assigned-slots #order-item{
+  background-color: #f0f6f7;
+  padding: 20px;
+  border-radius: 25px;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 30px;
+}
 .admin #order-item h3{
   font-size: 30px;
   font-family: Arial, Helvetica, sans-serif;
@@ -429,15 +437,17 @@ body{
 .other-container-fluid{
   background-image: linear-gradient(to right,blue,rgb(111, 111, 218));
   box-shadow: 5px 4px 10px grey ;
-  padding:40px;
-  max-width: 600px;
+  padding:30px;
+  max-width: 700px;
   border-radius: 10px;
   margin:auto;
   margin-bottom: 20px;
   margin-top: 20px;
 }
 
-
+.other-container-fluid p{
+  color:white;
+}
 .other-container-fluid label{
   font-size: large;background: rgba(50,50,50,0.3);
   border-radius: 6px;
@@ -449,7 +459,11 @@ body{
 }
 
 .other-container-fluid #carWash-chkbox{
-  margin-left: 50px;
+  margin-left: 30px;
+}
+
+.other-container-fluid #repairs-chkbox{
+  margin-left: 30px;
 }
 
 .other-container-fluid #dryWash-label{
@@ -488,7 +502,7 @@ body{
 .other-container-fluid h1{
   background: rgba(50,50,50,0.2);
   border-radius: 3px;
-  
+  margin-bottom: 20px;
   font-family:Arial, Helvetica, sans-serif;
   padding: 6px;
 }
@@ -723,6 +737,7 @@ form.form-control{
   margin:auto;
   text-align: center;
   margin-top: 20px;
+  margin-bottom:20px;
   padding-bottom: 30px;
 }
 
