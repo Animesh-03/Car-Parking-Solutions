@@ -34,7 +34,7 @@ const LocationItem = (props) => {
         //OnClick event to div
         <div id="location-item" onClick={ (e) =>{ if(props.admin == false) history.push("/location/" + loc.id,{user:user});}} >
             <h3>{loc.location} {props.admin && "ID: "+loc.id}</h3>
-            <label htmlFor="location-item-dryWash">Dry Wash</label>
+            <label htmlFor="location-item-dryWash">Dry Clean</label>
             <input className="form-check-input" id="location-item-dryWash" disabled={true} type="checkbox" checked={loc.dryWashOffered} />
             <label htmlFor="location-item-carWash">Car Wash</label>
             <input className="form-check-input" id="location-item-carWash" disabled={true} type="checkbox" checked={loc.carWashOffered} />
