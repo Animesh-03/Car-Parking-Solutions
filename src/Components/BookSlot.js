@@ -119,6 +119,7 @@ const BookSlot = () => {
     return ( 
         <div className="other-container-fluid">
             <h1>Slot Booking</h1>
+            <p>Booking Cost : Rs. 25/hr</p>
             <label htmlFor="booking-date">Booking Date </label>
             <input id="booking-date" placeholder="DD-MM-YY"
             onChange={(e) => setBookingDate(e.target.value)} />
@@ -138,11 +139,11 @@ const BookSlot = () => {
             
             <h1>Additional Options</h1>
             {locFound && loc.dryWashOffered && (<input type="checkbox" id="dryWash-chkbox"  onChange={(e) => setDryWash(e.target.value)} />)}
-            {locFound && loc.dryWashOffered && (<label id="dryWash-label" htmlFor="dryWash-chkbox">Request Dry Wash</label>)}
+            {locFound && loc.dryWashOffered && (<label id="dryWash-label" htmlFor="dryWash-chkbox">Dry Cleaning (Rs. 100)</label>)}
             {locFound && loc.carWashOffered && <input type="checkbox" id="carWash-chkbox"  onChange={(e) => setCarWash(e.target.value)} />}
-            {locFound && loc.carWashOffered && <label id="carWash-label" htmlFor="carWash-chkbox">Request Car Wash</label>}
+            {locFound && loc.carWashOffered && <label id="carWash-label" htmlFor="carWash-chkbox">Car Wash (Rs. 250)</label>}
             {locFound && loc.repairsOffered && <input type="checkbox" id="repairs-chkbox"  onChange={(e) => setRepairs(e.target.value)} />}
-            {locFound && loc.repairsOffered && <label id="repairs-label" htmlFor="repairs-chkbox">Request Repairs</label>}
+            {locFound && loc.repairsOffered && <label id="repairs-label" htmlFor="repairs-chkbox">Repairs (Rs. 300)</label>}
             <br /><br />
             <button className="btn btn-primary" onClick={handleSubmit}>Submit</button>
         </div>
