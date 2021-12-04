@@ -276,7 +276,7 @@ body{
 }
 
 .ManageParkingSlots #unique_enclosure input[type="checkbox"]{
-  margin-left: 8px;
+  margin-left: 20px;
 }
 
 .ManageParkingSlots #unique_enclosure button{
