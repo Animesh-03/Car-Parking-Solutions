@@ -25,6 +25,10 @@ const EditDetails = () => {
         {
             alert("Please enter a valid number plate");
         }
+        else if(user.carModel == PreferenceList.list[0] || user.carModel == null)
+        {
+            alert("Please choose a car model");
+        }
         else
         {
             axios.post("http://localhost:8080/users/update",null,{params:{

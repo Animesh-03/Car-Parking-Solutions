@@ -11,7 +11,7 @@ const ManageParkingSlots = () => {
     const [carWash,setCarWash] = useState(false);
     const [repairs,setRepairs] = useState(false);
 
-    const [preference,setPreference] = useState(PreferenceList.list[1]);
+    const [preference,setPreference] = useState(PreferenceList.list[0]);
 
     const [locationId,setLocationId] = useState();
 
@@ -37,17 +37,21 @@ const ManageParkingSlots = () => {
     const postSlot = () => {
         
         let parkingLoc;
-        axios.get("http://localhost:8080/location/get",{params:{
-            id:locationId
-        }}).then((res) => {
-            parkingLoc = res.data.location;
-            setTimeout(() => axios.post("http://localhost:8080/slots/add",null,{params:{
-                locationId:locationId,
-                locationName:parkingLoc,
-                preference:preference
-            }}),10);
+        if(preference != PreferenceList.list[0])
+        {
+           axios.get("http://localhost:8080/location/get",{params:{
+                id:locationId
+            }}).then((res) => {
+                parkingLoc = res.data.location;
+                setTimeout(() => axios.post("http://localhost:8080/slots/add",null,{params:{
+                    locationId:locationId,
+                    locationName:parkingLoc,
+                    preference:preference
+                }}),10);
 
-        });
+            }); 
+        }
+        
 
         
     }
@@ -73,7 +77,7 @@ const ManageParkingSlots = () => {
             <h2>Manage Slots</h2>
             <div id="manage_slot_unique_div">
             <input id="slot-locationId" placeholder="Location ID" onChange={(e) => setLocationId(e.target.value)} />
-                <select defaultValue={PreferenceList.list[1]} onChange={(e) => {setPreference(e.target.value); console.log(e.target.value)}}>
+                <select defaultValue={PreferenceList.list[0]} onChange={(e) => {setPreference(e.target.value); console.log(e.target.value)}}>
                     {PreferenceList.list.map((pref) => <option value={pref}>{pref}</option>)}
                 </select>
             <button onClick={postSlot} >Post Slot </button>

@@ -64,6 +64,8 @@ const Register = () => {
             
             if(validateForm() && !usernameExists)
             {
+                console.log("Registered");
+                console.log(validateForm());
                 axios.post("http://localhost:8080/users/add",null,{params:{
                     firstName:firstName,
                     lastName:lastName,
@@ -75,9 +77,6 @@ const Register = () => {
                 history.push("/");
             }
         })
-        
-
-        
         
     }
 
@@ -150,7 +149,6 @@ const Register = () => {
     function emailError() {
         let pattern = /[A-Za-z0-9]+@[a-z\-]+.[a-z]/;
         let result = pattern.test(email);
-        console.log(result);
         
         if(!result)
         {
@@ -234,8 +232,7 @@ const Register = () => {
             })
         }
         
-            
-        return bool;
+        setTimeout(() => {return bool;}, 100);
     }
 
     

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router";
-import SlotItem from "./SlotItem";
+import OrderItem from "./OrderItem";
 
 const EmployeeDashboard = () => {
 
@@ -9,15 +9,15 @@ const EmployeeDashboard = () => {
     const history = useHistory();
 
     const emp = location.state.user;
-    const [slots,setSlots] = useState();
-    const [foundSlots,setFoundSlots] = useState(false);
+    const [orders,setOrders] = useState();
+    const [foundOrders,setFoundOrders] = useState(false);
 
     useEffect(() => {
         axios.get("http://localhost:8080/orders/getInLocation",{params:{
             id:emp.assignedTo
         }}).then((res) => {
-            setSlots(res.data);
-            setFoundSlots(true);
+            setOrders(res.data);
+            setFoundOrders(true);
         })
     },[])
 
@@ -30,7 +30,7 @@ const EmployeeDashboard = () => {
             <p>Your Rating: {emp.rating}</p>
             <p>Number of orders completed: {emp.numberOfOrders}</p>
             <div id="assigned-slots">
-            {foundSlots && (slots.map((slt) => <SlotItem slot={slt} user={null} admin={false} slotNumber={slotNumber++}  />))}
+            {foundOrders && (orders.map((o) => <OrderItem order={o} user={null} admin={false} emp={true} />))}
             </div>
         </div>
      );
