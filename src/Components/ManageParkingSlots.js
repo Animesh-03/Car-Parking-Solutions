@@ -64,11 +64,11 @@ const ManageParkingSlots = () => {
             <div id = "unique_enclosure">
             <input id="parking-location" placeholder="Location" onChange={(e) => setLocation(e.target.value)} />
             <input type="checkbox" id="dryWash-chkbox" onChange={(e) => setDryWash(e.target.value)} />
-            <label htmlFor="dryWash-chkbox">Request Dry Wash</label>
+            <label htmlFor="dryWash-chkbox">Dry Cleaning</label>
             <input type="checkbox" id="carWash-chkbox" onChange={(e) => setCarWash(e.target.value)} />
-            <label htmlFor="carWash-chkbox">Request Car Wash</label>
+            <label htmlFor="carWash-chkbox">Car Wash</label>
             <input type="checkbox" id="repairs-chkbox" onChange={(e) => setRepairs(e.target.value)} />
-            <label htmlFor="repairs-chkbox">Request Repairs</label>
+            <label htmlFor="repairs-chkbox">Repairs</label>
             <button onClick={postLocation}>Post</button>
             </div>
             <h3>All Locations</h3>
