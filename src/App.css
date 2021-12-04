@@ -86,7 +86,7 @@ body{
   border-radius: 10px;
   margin:auto;
   margin-top: 20px;
-  margin-bottom:20px
+  margin-bottom:20px;
  }
 
  .slots-in-location{
@@ -318,6 +318,7 @@ body{
 
  .login-form .logo{
    color: white;
+   margin-top:30px;
  }
 
  .text-center p{
