@@ -696,8 +696,12 @@ form.form-control{
 .register-h1{
   background-color: #0d6efd;
   padding:10px;
+  padding-left: 38px;
+  padding-right: 38px;
+  width: 90%;
   color: beige;
   border-radius: 15px;
+  margin:auto;
 }
 
 .employee-dashboard{
