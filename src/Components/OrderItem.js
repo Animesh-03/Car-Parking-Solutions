@@ -11,6 +11,8 @@ const OrderItem = (props) => {
 
     const [locationName,setLocationName] = useState();
     const [foundLocationName,setFoundLocation] = useState(false);
+
+    console.log(order);
     
     //Getting location name through ID
     useEffect(() => {
@@ -29,6 +31,16 @@ const OrderItem = (props) => {
             <p>Booking For: {order.bookingDate} </p>
             <p>Check In Time: {order.checkInTime}, Check Out Time: {order.checkOutTime}</p>
             <p>Payment Amount: {order.amount}</p>
+            <br/>
+            <div id="services-required">
+                <label htmlFor="order-item-dryWash">Dry Clean</label>
+                <input className="form-check-input" id="order-item-dryWash" disabled={true} type="checkbox" checked={order.dryWash} />
+                <label htmlFor="order-item-carWash">Car Wash</label>
+                <input className="form-check-input" id="order-item-carWash" disabled={true} type="checkbox" checked={order.carWash} />
+                <label htmlFor="order-item-repairs">Repairs</label>
+                <input className="form-check-input" id="order-item-repairs" disabled={true} type="checkbox" checked={order.repairs} />
+            </div>
+            
         </div>
      );
 }
