@@ -232,7 +232,7 @@ const Register = () => {
             })
         }
         
-        setTimeout(() => {return bool;}, 100);
+        return bool;
     }
 
     
