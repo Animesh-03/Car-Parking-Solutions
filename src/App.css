@@ -173,6 +173,14 @@ body{
   font-weight: bold;
 }
 
+#order-item #order-item-dryWash{
+  margin-right: 10px;
+}
+
+#order-item #order-item-carWash{
+  margin-right: 10px;
+}
+
 .admin h1{
   padding:20px;
   background-color: rgba(50,50,50,0.3);
